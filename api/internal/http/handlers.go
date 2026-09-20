@@ -150,6 +150,10 @@ type joinRequest struct {
 }
 
 func (a *API) joinRoom(w http.ResponseWriter, r *http.Request) {
+	if a.JoinLimiter != nil && !a.JoinLimiter.Allow(r.Context(), "join:"+clientIP(r, a.TrustProxy)) {
+		writeError(w, http.StatusTooManyRequests, "RATE_LIMITED", "too many join attempts, try again in a minute")
+		return
+	}
 	var req joinRequest
 	if !decodeJSON(w, r, &req) {
 		return

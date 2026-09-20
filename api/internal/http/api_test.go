@@ -28,6 +28,8 @@ type fakeStore struct {
 	pool        []store.QuestionRef
 	createdWith store.NewRoom
 	joinedWith  store.NewPlayer
+	results     []store.ResultRow
+	schoolRanks []store.SchoolRank
 }
 
 func (f *fakeStore) HostByEmail(_ context.Context, email string) (store.Host, error) {
@@ -54,6 +56,18 @@ func (f *fakeStore) JoinRoom(_ context.Context, in store.NewPlayer) (store.Playe
 		return store.Player{}, f.joinErr
 	}
 	return store.Player{ID: "player-1", Nickname: in.Nickname}, nil
+}
+func (f *fakeStore) RoomByID(_ context.Context, id string) (store.Room, error) {
+	if id != f.room.ID {
+		return store.Room{}, store.ErrNotFound
+	}
+	return f.room, nil
+}
+func (f *fakeStore) RoomResults(context.Context, string) ([]store.ResultRow, error) {
+	return f.results, nil
+}
+func (f *fakeStore) SchoolLeaderboard(context.Context) ([]store.SchoolRank, error) {
+	return f.schoolRanks, nil
 }
 func (f *fakeStore) SearchSchools(context.Context, string) ([]store.School, error) {
 	return f.schools, nil

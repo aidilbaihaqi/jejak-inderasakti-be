@@ -25,7 +25,7 @@ npx newman run postman/jejak-inderasakti.postman_collection.json -e postman/jeja
 ```
 
 ## Status
-Working: Healthz, Auth, Rooms (create / get / join and their error cases), Schools. Not implemented yet, so they fail: `Export results CSV` and `School leaderboard` (planned Mon-Tue). `Login` takes ~250 ms because of bcrypt cost 12, close to the 300 ms check; that is expected.
+Every request works (12 requests, 41 assertions pass against the Docker dev stack). `Login` takes ~250 ms because of bcrypt cost 12, close to the 300 ms check; that is expected. To run against staging set `base_url` to `https://<your domain>`; the join rate limit (10/min/IP) is on there but off in development.
 
 ## Keeping it in sync
 When an endpoint is added or changed, update the matching request, its test script and any saved variables here (see `CLAUDE.md`, Workflow rules).

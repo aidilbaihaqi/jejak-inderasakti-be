@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"math"
 	"time"
 
 	"github.com/google/uuid"
@@ -118,8 +119,8 @@ func (s *Store) SaveResult(ctx context.Context, r Result) error {
 		return ErrDuplicateAnswer
 	}
 	err = q.UpdatePlayerProgress(ctx, queries.UpdatePlayerProgressParams{
-		ID: playerID, Score: int32(r.Score), CorrectCount: int16(r.CorrectCount), TotalMs: int32(r.TotalMs),
-		CurrentIndex: int16(r.CurrentIndex), Streak: int16(r.Streak), Column7: r.Finished,
+		ID: playerID, Score: toInt32(r.Score), CorrectCount: toInt16(r.CorrectCount), TotalMs: toInt32(r.TotalMs),
+		CurrentIndex: toInt16(r.CurrentIndex), Streak: toInt16(r.Streak), Column7: r.Finished,
 	})
 	if err != nil {
 		return fmt.Errorf("update player progress: %w", err)
@@ -132,7 +133,7 @@ func (s *Store) SaveResult(ctx context.Context, r Result) error {
 
 func answerParams(playerID uuid.UUID, r Result) queries.InsertAnswerParams {
 	params := queries.InsertAnswerParams{
-		RoomPlayerID: playerID, QuestionID: r.QuestionID, Points: int16(r.Points),
+		RoomPlayerID: playerID, QuestionID: r.QuestionID, Points: toInt16(r.Points),
 		ServedAt: pgtype.Timestamptz{Time: r.ServedAt, Valid: true},
 	}
 	if r.AnsweredAt != nil {
@@ -145,4 +146,13 @@ func answerParams(playerID uuid.UUID, r Result) queries.InsertAnswerParams {
 		params.Correct = pgtype.Bool{Bool: *r.Correct, Valid: true}
 	}
 	return params
+}
+
+// toInt16 and toInt32 clamp instead of wrapping; the database columns are smaller than int.
+func toInt16(v int) int16 {
+	return int16(min(max(v, math.MinInt16), math.MaxInt16)) //nolint:gosec // clamped to range above
+}
+
+func toInt32(v int) int32 {
+	return int32(min(max(v, math.MinInt32), math.MaxInt32)) //nolint:gosec // clamped to range above
 }

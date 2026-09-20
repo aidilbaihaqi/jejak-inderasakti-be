@@ -1,0 +1,33 @@
+# Caddy obtains and renews the TLS certificate for $DOMAIN automatically (Let's Encrypt).
+# Ports 80 and 443 must reach this host and DOMAIN must resolve to it.
+{$DOMAIN} {
+	encode gzip zstd
+
+	log {
+		output stdout
+		format json
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+
+	# WebSocket (Caddy upgrades the connection automatically)
+	handle /ws {
+		reverse_proxy api:8080
+	}
+
+	handle /api/* {
+		reverse_proxy api:8080
+	}
+
+	# Everything else is the single-page frontend
+	handle {
+		root * /srv/web
+		try_files {path} /index.html
+		file_server
+	}
+}

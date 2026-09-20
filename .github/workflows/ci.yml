@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, dev]
+  push:
+    branches: [main, dev]
+
+jobs:
+  backend:
+    name: Go lint and test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: api/go.mod
+          cache-dependency-path: api/go.sum
+
+      - name: Check formatting
+        run: test -z "$(gofmt -l .)"
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          working-directory: api
+          version: latest
+
+      - name: Tests with race detector
+        run: go test -race -count=1 ./...
+
+  deploy-config:
+    name: Validate deploy config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compose file
+        working-directory: deploy
+        env:
+          DOMAIN: ci.example.com
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci
+          POSTGRES_DB: ci
+          JWT_SECRET: 0123456789abcdef0123456789abcdef
+        run: docker compose -f docker-compose.yml config --quiet
+
+      - name: Caddyfile
+        run: >
+          docker run --rm -e DOMAIN=ci.example.com
+          -v "$PWD/deploy/Caddyfile":/etc/caddy/Caddyfile:ro
+          caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile

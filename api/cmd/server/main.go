@@ -15,8 +15,10 @@ import (
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/game"
 	apihttp "github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/http"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/leaderboard"
+	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/ratelimit"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/store"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/ws"
+	"github.com/redis/go-redis/v9"
 )
 
 const (
@@ -56,14 +58,15 @@ func run() error {
 	}
 
 	db := store.New(pool)
-	board, closeBoard := openBoard(ctx, cfg.RedisURL)
-	defer closeBoard()
-	rooms := game.NewRegistry(ctx, db, board)
+	redisClient := openRedis(ctx, cfg.RedisURL)
+	defer closeRedis(redisClient)
+	rooms := game.NewRegistry(ctx, db, newBoard(redisClient))
 	srv := &http.Server{
 		Addr: ":" + cfg.Port,
 		Handler: apihttp.NewRouter(apihttp.Deps{
-			Store: db, Rooms: rooms, Tokens: tokens, PublicBaseURL: cfg.PublicBaseURL,
-			WebSocket: ws.NewHandler(rooms, tokens, cfg.Env == "development"),
+			Store: db, Rooms: rooms, Tokens: tokens, PublicBaseURL: cfg.PublicBaseURL, TrustProxy: cfg.TrustProxy,
+			JoinLimiter: ratelimit.New(redisClient, cfg.JoinLimitPerMinute, time.Minute),
+			WebSocket:   ws.NewHandler(rooms, tokens, cfg.Env == "development"),
 		}),
 		ReadHeaderTimeout: readHeaderTimeout,
 	}
@@ -88,27 +91,40 @@ func serve(ctx context.Context, srv *http.Server, cfg config.Config) error {
 	return nil
 }
 
-// openBoard connects the Redis leaderboard. Redis is disposable, so a missing or unreachable
-// Redis only means rankings are computed from memory; the returned func closes the client.
-func openBoard(ctx context.Context, url string) (game.Board, func()) {
-	noop := func() {}
+// openRedis connects to Redis. Redis is disposable, so a missing or unreachable server only means
+// rankings and rate limits fall back to memory; it returns nil when REDIS_URL is unusable.
+func openRedis(ctx context.Context, url string) *redis.Client {
 	if url == "" {
-		slog.Warn("REDIS_URL not set, leaderboard uses memory only")
-		return nil, noop
+		slog.Warn("REDIS_URL not set, leaderboard and rate limit use memory only")
+		return nil
 	}
-	board, err := leaderboard.NewRedis(url)
+	opts, err := redis.ParseURL(url)
 	if err != nil {
-		slog.Warn("invalid REDIS_URL, leaderboard uses memory only", "err", err)
-		return nil, noop
+		slog.Warn("invalid REDIS_URL, leaderboard and rate limit use memory only", "err", err)
+		return nil
 	}
+	client := redis.NewClient(opts)
 	pingCtx, cancel := context.WithTimeout(ctx, redisPingTimeout)
 	defer cancel()
-	if err := board.Ping(pingCtx); err != nil {
-		slog.Warn("redis unreachable, rankings fall back to memory until it is back", "err", err)
+	if err := client.Ping(pingCtx).Err(); err != nil {
+		slog.Warn("redis unreachable, falling back to memory until it is back", "err", err)
 	}
-	return board, func() {
-		if err := board.Close(); err != nil {
-			slog.Warn("close redis", "err", err)
-		}
+	return client
+}
+
+// newBoard returns a nil interface (not a typed nil) when there is no Redis client.
+func newBoard(client *redis.Client) game.Board {
+	if client == nil {
+		return nil
+	}
+	return leaderboard.NewRedis(client)
+}
+
+func closeRedis(client *redis.Client) {
+	if client == nil {
+		return
+	}
+	if err := client.Close(); err != nil {
+		slog.Warn("close redis", "err", err)
 	}
 }

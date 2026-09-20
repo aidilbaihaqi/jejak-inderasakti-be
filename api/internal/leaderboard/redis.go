@@ -18,20 +18,9 @@ type Redis struct {
 	client *redis.Client
 }
 
-func NewRedis(url string) (*Redis, error) {
-	opts, err := redis.ParseURL(url)
-	if err != nil {
-		return nil, fmt.Errorf("parse REDIS_URL: %w", err)
-	}
-	return &Redis{client: redis.NewClient(opts)}, nil
-}
-
-func (l *Redis) Ping(ctx context.Context) error {
-	return l.client.Ping(ctx).Err()
-}
-
-func (l *Redis) Close() error {
-	return l.client.Close()
+// NewRedis uses a client shared with the rest of the app; the caller closes it.
+func NewRedis(client *redis.Client) *Redis {
+	return &Redis{client: client}
 }
 
 // Save writes (or overwrites) the given players' standings.
@@ -55,7 +44,7 @@ func (l *Redis) Save(ctx context.Context, roomID string, standings []rank.Standi
 
 // Order returns player ids best first.
 func (l *Redis) Order(ctx context.Context, roomID string) ([]string, error) {
-	ids, err := l.client.ZRevRange(ctx, roomKey(roomID), 0, -1).Result()
+	ids, err := l.client.ZRangeArgs(ctx, redis.ZRangeArgs{Key: roomKey(roomID), Start: 0, Stop: -1, Rev: true}).Result()
 	if err != nil {
 		return nil, fmt.Errorf("read leaderboard: %w", err)
 	}

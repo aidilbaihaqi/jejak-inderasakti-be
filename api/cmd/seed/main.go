@@ -119,8 +119,8 @@ func toQuestionParams(item seed.Question) (queries.UpsertQuestionParams, error) 
 	}
 	return queries.UpsertQuestionParams{
 		ID:          item.ID,
-		Site:        int16(item.Site),
-		Level:       int16(item.Level),
+		Site:        int16(item.Site),  //nolint:gosec // validated to 0-5 by seed.ValidateQuestions
+		Level:       int16(item.Level), //nolint:gosec // validated to 1-3 by seed.ValidateQuestions
 		Type:        item.Type,
 		Prompt:      prompt,
 		Options:     options,

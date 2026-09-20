@@ -16,7 +16,7 @@ type School struct {
 
 // LoadSchools reads a CSV with header name,jenjang,city; jenjang and city may be empty.
 func LoadSchools(path string) ([]School, error) {
-	raw, err := os.ReadFile(path)
+	raw, err := os.ReadFile(path) //nolint:gosec // path is the operator's own CLI flag
 	if err != nil {
 		return nil, fmt.Errorf("read schools file: %w", err)
 	}
