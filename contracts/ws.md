@@ -28,12 +28,13 @@ Deadline = `served_at + limit_ms + 1000 ms`.
 |---|---|---|
 | `room.state` | Player | `{status, current_index, score, streak, players[]}` — on connect/reconnect; the active question follows via `q.show` if not past deadline |
 | `room.started` | All | — |
-| `q.show` | Player | `{index, site, level, prompt, options: [{id, label}], limit_ms}` |
-| `q.result` | Player | `{correct, correct_option_id, explanation, points, score, streak}` |
+| `q.show` | Player | `{index, total, site, level, prompt, options: [{id, label}], limit_ms}` — `total` is the number of questions in the session (10 or 15). Option order is shuffled per player (except true/false). After a reconnect `limit_ms` is the time left |
+| `q.result` | Player | `{correct, correct_option_id, explanation, points, score, streak, finished}` — `finished` is true after the last question |
 | `lb.update` | All | `{rankings: [{rank, nickname, school, score, correct_count}]}` — at most 1×/s per room |
 | `room.ended` | All | `{podium: [{rank, nickname, avatar, score}], school_lb: [...]}` — on all finished, `host.end`, or 12 min after start |
 | `player.joined` | Host | `{id, nickname, avatar, school, lang}` |
 | `player.kicked` | Kicked player | `{reason}` |
+| `error` | Player | `{code, message, ref}` — a rejected command; `ref` is the command type (see below) |
 | `pong` | Both | — |
 
 ## Examples
@@ -50,3 +51,26 @@ Deadline = `served_at + limit_ms + 1000 ms`.
   "explanation": "Masjid Raya Sultan Riau memiliki 13 kubah ...",
   "points": 583, "score": 583, "streak": 1}}
 ```
+
+## Gameplay rules (added 21 Sep, additive to the frozen contract)
+
+- Flow per player: `q.next` -> `q.show` -> `q.answer` -> `q.result` -> `q.next` ... Each player paces themselves; there is no clock sync (ADR-002).
+- Time is measured by the server: `served_at` is set when `q.show` is sent, `answered_at` when `q.answer` arrives.
+- Deadline = `served_at + limit_ms + 1000 ms`. An answer after the deadline, or `option_id: null`, is stored as a 0-point timeout and answered with a normal `q.result` (`correct: false`).
+- `q.next` while the current question is unanswered and before its deadline is rejected with `QUESTION_IN_PROGRESS`. After the deadline it records a 0-point timeout for the old question and serves the next one.
+- `lb.update` is sent to everyone at most once per second per room, ranked by score, then correct answers, then total answer time.
+- The room ends (`room.ended`) when every player has answered all questions, on `host.end`, or 12 minutes after `host.start`.
+- On reconnect the server sends `room.state` (with the player's `current_index`, `score`, `streak`) and, if a question is still open, `q.show` again with the remaining `limit_ms`. If its deadline passed while disconnected it is recorded as a timeout first.
+
+### `error` codes
+
+| `code` | `ref` | Meaning |
+|---|---|---|
+| `ROOM_NOT_STARTED` | `q.next`, `q.answer` | The host has not started the session |
+| `QUESTION_IN_PROGRESS` | `q.next` | Answer the current question first |
+| `ALREADY_FINISHED` | `q.next` | The player answered every question |
+| `NOT_SERVED` | `q.answer` | `question_id` is not the active question |
+| `ALREADY_ANSWERED` | `q.answer` | The question was already answered; the first answer is kept |
+| `INVALID_OPTION` | `q.answer` | `option_id` does not belong to the question |
+| `INVALID_REQUEST` | `q.answer` | Malformed payload |
+| `INTERNAL` | `q.answer` | The answer could not be saved; the client may retry |

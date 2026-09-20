@@ -121,7 +121,6 @@ func (a *API) createRoom(w http.ResponseWriter, r *http.Request) {
 		writeInternal(w, "create room", err)
 		return
 	}
-	a.Rooms.Open(room)
 	writeJSON(w, http.StatusCreated, map[string]string{
 		"id": room.ID, "pin": room.PIN, "qr_url": fmt.Sprintf("%s/join?pin=%s", a.PublicBaseURL, room.PIN),
 	})

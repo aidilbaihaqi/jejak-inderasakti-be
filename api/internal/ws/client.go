@@ -140,6 +140,25 @@ func (c *Client) dispatch(clientID string, data []byte) {
 		c.Send(game.Message{T: "pong"})
 	case c.role == auth.RoleHost:
 		c.dispatchHost(msg)
+	case c.role == auth.RolePlayer:
+		c.dispatchPlayer(clientID, msg)
+	}
+}
+
+func (c *Client) dispatchPlayer(playerID string, msg incoming) {
+	switch msg.T {
+	case "q.next":
+		c.room.NextQuestion(playerID)
+	case "q.answer":
+		var d struct {
+			QuestionID string  `json:"question_id"`
+			OptionID   *string `json:"option_id"`
+		}
+		if err := json.Unmarshal(msg.D, &d); err != nil || d.QuestionID == "" {
+			c.Send(game.ErrorMessage("INVALID_REQUEST", "q.answer needs question_id and option_id", msg.T))
+			return
+		}
+		c.room.Answer(playerID, d.QuestionID, d.OptionID)
 	}
 }
 

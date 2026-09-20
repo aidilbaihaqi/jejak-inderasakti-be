@@ -14,6 +14,7 @@ import (
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/config"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/game"
 	apihttp "github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/http"
+	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/leaderboard"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/store"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/ws"
 )
@@ -21,6 +22,7 @@ import (
 const (
 	shutdownTimeout   = 10 * time.Second
 	readHeaderTimeout = 5 * time.Second
+	redisPingTimeout  = 2 * time.Second
 )
 
 func main() {
@@ -54,7 +56,9 @@ func run() error {
 	}
 
 	db := store.New(pool)
-	rooms := game.NewRegistry(ctx, db)
+	board, closeBoard := openBoard(ctx, cfg.RedisURL)
+	defer closeBoard()
+	rooms := game.NewRegistry(ctx, db, board)
 	srv := &http.Server{
 		Addr: ":" + cfg.Port,
 		Handler: apihttp.NewRouter(apihttp.Deps{
@@ -82,4 +86,29 @@ func serve(ctx context.Context, srv *http.Server, cfg config.Config) error {
 		return err
 	}
 	return nil
+}
+
+// openBoard connects the Redis leaderboard. Redis is disposable, so a missing or unreachable
+// Redis only means rankings are computed from memory; the returned func closes the client.
+func openBoard(ctx context.Context, url string) (game.Board, func()) {
+	noop := func() {}
+	if url == "" {
+		slog.Warn("REDIS_URL not set, leaderboard uses memory only")
+		return nil, noop
+	}
+	board, err := leaderboard.NewRedis(url)
+	if err != nil {
+		slog.Warn("invalid REDIS_URL, leaderboard uses memory only", "err", err)
+		return nil, noop
+	}
+	pingCtx, cancel := context.WithTimeout(ctx, redisPingTimeout)
+	defer cancel()
+	if err := board.Ping(pingCtx); err != nil {
+		slog.Warn("redis unreachable, rankings fall back to memory until it is back", "err", err)
+	}
+	return board, func() {
+		if err := board.Close(); err != nil {
+			slog.Warn("close redis", "err", err)
+		}
+	}
 }

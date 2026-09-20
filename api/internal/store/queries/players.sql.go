@@ -62,7 +62,8 @@ func (q *Queries) InsertPlayer(ctx context.Context, arg InsertPlayerParams) (uui
 }
 
 const listRoomPlayers = `-- name: ListRoomPlayers :many
-SELECT rp.id, rp.nickname, rp.avatar, rp.lang, COALESCE(s.name, '')::text AS school_name
+SELECT rp.id, rp.nickname, rp.avatar, rp.lang, COALESCE(s.name, '')::text AS school_name,
+       rp.score, rp.correct_count, rp.total_ms, rp.current_index, rp.streak, (rp.finished_at IS NOT NULL)::bool AS finished
 FROM room_players rp
 LEFT JOIN schools s ON s.id = rp.school_id
 WHERE rp.room_id = $1
@@ -70,11 +71,17 @@ ORDER BY rp.created_at
 `
 
 type ListRoomPlayersRow struct {
-	ID         uuid.UUID
-	Nickname   string
-	Avatar     int16
-	Lang       string
-	SchoolName string
+	ID           uuid.UUID
+	Nickname     string
+	Avatar       int16
+	Lang         string
+	SchoolName   string
+	Score        int32
+	CorrectCount int16
+	TotalMs      int32
+	CurrentIndex int16
+	Streak       int16
+	Finished     bool
 }
 
 func (q *Queries) ListRoomPlayers(ctx context.Context, roomID uuid.UUID) ([]ListRoomPlayersRow, error) {
@@ -92,6 +99,12 @@ func (q *Queries) ListRoomPlayers(ctx context.Context, roomID uuid.UUID) ([]List
 			&i.Avatar,
 			&i.Lang,
 			&i.SchoolName,
+			&i.Score,
+			&i.CorrectCount,
+			&i.TotalMs,
+			&i.CurrentIndex,
+			&i.Streak,
+			&i.Finished,
 		); err != nil {
 			return nil, err
 		}

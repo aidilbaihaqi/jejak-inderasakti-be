@@ -340,7 +340,7 @@ CUTOFF: Feature freeze Rab 23/9 18:00 ← TIDAK ADA FITUR BARU SETELAH INI
 
 ### Minggu 20/9 — Core Game
 
-> **Status: ✅ Selesai (2026-09-20)** — login host (JWT), `rooms`/`join`/`schools`, WS hub + room goroutine, pemilihan soal. Diverifikasi: `go test -race` (via `make test-docker`), Newman, dan alur WS nyata di Docker.
+> **Status: ✅ Selesai (2026-09-20, commit `fc53aad`)** — login host (JWT), `rooms`/`join`/`schools`, WS hub + room goroutine, pemilihan soal. Diverifikasi: `go test -race` (via `make test-docker`), Newman, dan alur WS nyata di Docker.
 
 | Tim | Goal | Kriteria Selesai |
 |---|---|---|
@@ -349,6 +349,8 @@ CUTOFF: Feature freeze Rab 23/9 18:00 ← TIDAK ADA FITUR BARU SETELAH INI
 | Desainer | 5 ilustrasi situs v1, peta pulau, 12 avatar | Aset dikirim ke FE untuk integrasi |
 
 ### Senin 21/9 — Integrasi & Scoring
+
+> **Status: ✅ Selesai (2026-09-21)** — `Score()` (UT-SC-01..14), `q.next`/`q.answer`, leaderboard Redis + `lb.update` 1×/detik, reconnect, room ended saat semua selesai. Diverifikasi: `make test-docker` (`-race`) dan satu sesi SD 15 soal end-to-end di Docker (skor Ani 12.750 = maksimum SD di dokumen desain).
 
 | Tim | Goal | Kriteria Selesai |
 |---|---|---|

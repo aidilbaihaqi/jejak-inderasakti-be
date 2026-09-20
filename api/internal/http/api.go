@@ -28,7 +28,6 @@ type Store interface {
 
 // RoomRegistry connects REST actions to the live room goroutines; *game.Registry satisfies it.
 type RoomRegistry interface {
-	Open(room store.Room)
 	AddPlayer(ctx context.Context, roomID string, p store.Player) error
 }
 
