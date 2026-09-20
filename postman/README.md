@@ -3,7 +3,7 @@
 ## Setup
 1. `make dev-up` (API on `http://localhost:8080`).
 2. In Postman: **Import** both files in this folder, then select the environment **Jejak - Local (Docker)**.
-3. Set `host_email` / `host_password` in the environment to a seeded host account.
+3. Create the dev host: `make db-create-host EMAIL=host@example.com NAME="Host Dev" PASSWORD=change-me` (matches the environment defaults).
 
 ## What is automated
 | Feature | Where |
@@ -25,7 +25,7 @@ npx newman run postman/jejak-inderasakti.postman_collection.json -e postman/jeja
 ```
 
 ## Status
-Only `Healthz` works today. The other requests follow `contracts/openapi.yaml` and will pass as the endpoints are implemented (host auth and rooms/join/schools are planned for Sunday 20/9). No host account is seeded yet.
+Working: Healthz, Auth, Rooms (create / get / join and their error cases), Schools. Not implemented yet, so they fail: `Export results CSV` and `School leaderboard` (planned Mon-Tue). `Login` takes ~250 ms because of bcrypt cost 12, close to the 300 ms check; that is expected.
 
 ## Keeping it in sync
 When an endpoint is added or changed, update the matching request, its test script and any saved variables here (see `CLAUDE.md`, Workflow rules).

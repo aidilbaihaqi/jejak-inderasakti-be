@@ -330,6 +330,8 @@ CUTOFF: Feature freeze Rab 23/9 18:00 ← TIDAK ADA FITUR BARU SETELAH INI
 
 ### Sabtu 19/9 — Fondasi
 
+> **Status: ✅ Selesai (2026-09-20)** — scaffold, migrasi 001–008, seed 66 soal ID+EN, `contracts/`. Sisa: `contracts/` belum di-PR review.
+
 | Tim | Goal | Kriteria Selesai |
 |---|---|---|
 | BE | Scaffold repo, migrasi 6 tabel, seed bank soal 66 soal (ID+EN), kunci `contracts/openapi.yaml` + `contracts/ws.md` | `make seed` berhasil; `go test ./...` lulus; contracts dikunci di PR |
@@ -337,6 +339,8 @@ CUTOFF: Feature freeze Rab 23/9 18:00 ← TIDAK ADA FITUR BARU SETELAH INI
 | Desainer | Style guide final (token warna, tipografi, spacing), maskot Sakti pose utama (6 pose statis SVG), hi-fi 6 layar kunci, ikon motif opsi | Aset dikirim ke FE: `paper.webp`, 4 SVG motif, 6 SVG Sakti |
 
 ### Minggu 20/9 — Core Game
+
+> **Status: ✅ Selesai (2026-09-20)** — login host (JWT), `rooms`/`join`/`schools`, WS hub + room goroutine, pemilihan soal. Diverifikasi: `go test -race` (via `make test-docker`), Newman, dan alur WS nyata di Docker.
 
 | Tim | Goal | Kriteria Selesai |
 |---|---|---|

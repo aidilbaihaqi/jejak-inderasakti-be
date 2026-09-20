@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Status: foundation scaffolded
 
-Day-1 scaffold exists (`api/` with migrations, seed, `/api/healthz`; `contracts/`; `postman/`; `deploy/docker-compose.dev.yml`). Game logic, REST handlers and WebSocket are not built yet. `docs/` holds 10 design documents (written in Indonesian) generated from three source documents; they are the specification for the backend that will live here. Read the relevant doc before writing code; do not re-derive decisions already recorded there.
+Done: scaffold + migrations + seed (19 Sep); host login, rooms/join/schools REST, WS hub + room goroutine (lobby, host.start/end/kick, ping), question selector (20 Sep). Not built yet: `q.next`/`q.answer`, `Score()`, leaderboard/Redis, results.csv, rate limit (see `docs/10_Team_Workflow.md` §7). `docs/` holds 10 design documents (written in Indonesian) generated from three source documents; they are the specification for the backend that will live here. Read the relevant doc before writing code; do not re-derive decisions already recorded there.
 
 | Doc | Read it when |
 |---|---|
@@ -43,7 +43,7 @@ Migrations run automatically via `goose.Up()` in `cmd/server/main.go` before the
 
 ## Workflow rules (mandatory)
 
-- **After every new feature or fix, run `make test` and make sure it passes before reporting the work as done.** Add or update tests for the change first. Report failures with their output; never claim done on a red or unrun suite. (`-race` needs gcc/CGO: if it is unavailable locally, say so explicitly and run `cd api && go test ./...` as a fallback — CI runs the real `-race` check.)
+- **After every new feature or fix, run `make test` and make sure it passes before reporting the work as done.** Add or update tests for the change first. Report failures with their output; never claim done on a red or unrun suite. (`-race` needs gcc/CGO: if `make test` fails with "-race requires cgo", run `make test-docker` instead, which runs the identical suite with `-race` inside a Go container.)
 - **Every new or changed REST endpoint must also update the Postman collection** in `postman/` (request, test scripts, saved variables) so it stays in sync with `contracts/openapi.yaml`.
 
 ## Local Docker & Postman
@@ -55,6 +55,8 @@ make db-rollback # undo the last migration
 make db-status   # applied/pending migrations
 make db-seed     # load seed/ (idempotent); db-seed-strict requires 66 questions
 make db-refresh  # DESTRUCTIVE dev only: reset -> migrate -> seed-strict
+make db-create-host EMAIL=host@example.com NAME="Host Dev" PASSWORD=change-me   # host login (dev)
+make test-docker # `go test -race` inside a Go container (use when the machine has no gcc)
 make seed        # host-side seed via .env (needs host port to reach Postgres)
 make dev-logs    # tail API logs
 make dev-down    # stop (keep data);  make dev-reset  # stop and wipe DB volume

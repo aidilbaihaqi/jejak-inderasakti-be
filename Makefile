@@ -3,7 +3,10 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 
-.PHONY: db-migrate db-rollback db-status db-seed db-seed-strict db-refresh dev-up dev-down dev-logs dev-reset dev test seed seed-strict build-fe up down backup
+# Stop Git Bash on Windows from rewriting /app/... container paths.
+export MSYS_NO_PATHCONV = 1
+
+.PHONY: test-docker db-create-host db-migrate db-rollback db-status db-seed db-seed-strict db-refresh dev-up dev-down dev-logs dev-reset dev test seed seed-strict build-fe up down backup
 
 # --- Database commands (run inside the Docker network, so no host port needed) ---
 DB_TOOLS = docker compose -f deploy/docker-compose.dev.yml --profile tools run --rm --build tools
@@ -20,6 +23,9 @@ db-rollback: ## roll back the last migration only
 
 db-status: ## show applied/pending migrations
 	$(DB_TOOLS) /app/migrate status
+
+db-create-host: ## create/update a host login: make db-create-host EMAIL=a@b.c NAME="Host" PASSWORD=secret-pass
+	$(DB_TOOLS) /app/createhost -email "$(EMAIL)" -name "$(NAME)" -password "$(PASSWORD)"
 
 db-seed: ## load questions + schools (idempotent)
 	$(DB_TOOLS) /app/seed $(SEED_ARGS)
@@ -49,6 +55,10 @@ dev:
 
 test:
 	cd api && go test -race ./...
+
+# Same as `make test` but inside a Go container that has gcc, for machines without CGO (needed by -race).
+test-docker:
+	docker run --rm -v "$(CURDIR)":/repo -v jejak-gomod:/go/pkg/mod -v jejak-gobuild:/root/.cache/go-build -w /repo/api golang:1.26 go test -race -count=1 ./...
 
 seed:
 	cd api && go run ./cmd/seed

@@ -5,11 +5,12 @@
 package queries
 
 import (
+	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
 type Answer struct {
-	RoomPlayerID pgtype.UUID
+	RoomPlayerID uuid.UUID
 	QuestionID   string
 	ServedAt     pgtype.Timestamptz
 	AnsweredAt   pgtype.Timestamptz
@@ -19,7 +20,7 @@ type Answer struct {
 }
 
 type HostUser struct {
-	ID           pgtype.UUID
+	ID           uuid.UUID
 	Email        string
 	PasswordHash string
 	Name         string
@@ -41,9 +42,9 @@ type Question struct {
 }
 
 type Room struct {
-	ID           pgtype.UUID
+	ID           uuid.UUID
 	Pin          string
-	HostID       pgtype.UUID
+	HostID       uuid.UUID
 	Jenjang      string
 	ShortSession bool
 	AccuracyMode bool
@@ -55,8 +56,8 @@ type Room struct {
 }
 
 type RoomPlayer struct {
-	ID           pgtype.UUID
-	RoomID       pgtype.UUID
+	ID           uuid.UUID
+	RoomID       uuid.UUID
 	Nickname     string
 	SchoolID     pgtype.Int4
 	Jenjang      string

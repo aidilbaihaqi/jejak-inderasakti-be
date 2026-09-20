@@ -10,11 +10,18 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/auth"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/config"
+	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/game"
+	apihttp "github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/http"
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/store"
+	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/ws"
 )
 
-const shutdownTimeout = 10 * time.Second
+const (
+	shutdownTimeout   = 10 * time.Second
+	readHeaderTimeout = 5 * time.Second
+)
 
 func main() {
 	if err := run(); err != nil {
@@ -30,6 +37,10 @@ func run() error {
 	}
 	slog.SetDefault(slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: cfg.LogLevel})))
 
+	tokens, err := auth.NewTokens(cfg.JWTSecret)
+	if err != nil {
+		return err
+	}
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
@@ -38,20 +49,24 @@ func run() error {
 		return err
 	}
 	defer pool.Close()
-
 	if err := store.Migrate(ctx, pool); err != nil {
 		return err
 	}
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("GET /api/healthz", func(w http.ResponseWriter, _ *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		if _, err := w.Write([]byte(`{"status":"ok"}`)); err != nil {
-			slog.Warn("write healthz", "err", err)
-		}
-	})
-	srv := &http.Server{Addr: ":" + cfg.Port, Handler: mux, ReadHeaderTimeout: 5 * time.Second}
+	db := store.New(pool)
+	rooms := game.NewRegistry(ctx, db)
+	srv := &http.Server{
+		Addr: ":" + cfg.Port,
+		Handler: apihttp.NewRouter(apihttp.Deps{
+			Store: db, Rooms: rooms, Tokens: tokens, PublicBaseURL: cfg.PublicBaseURL,
+			WebSocket: ws.NewHandler(rooms, tokens, cfg.Env == "development"),
+		}),
+		ReadHeaderTimeout: readHeaderTimeout,
+	}
+	return serve(ctx, srv, cfg)
+}
 
+func serve(ctx context.Context, srv *http.Server, cfg config.Config) error {
 	errCh := make(chan error, 1)
 	go func() { errCh <- srv.ListenAndServe() }()
 	slog.Info("listening", "port", cfg.Port, "env", cfg.Env)
@@ -61,7 +76,6 @@ func run() error {
 		return err
 	case <-ctx.Done():
 	}
-
 	shutdownCtx, cancel := context.WithTimeout(context.Background(), shutdownTimeout)
 	defer cancel()
 	if err := srv.Shutdown(shutdownCtx); err != nil && !errors.Is(err, http.ErrServerClosed) {

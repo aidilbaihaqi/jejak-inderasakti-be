@@ -2,7 +2,8 @@
 
 **FROZEN as of 2026-09-19** — change only via a contract PR. REST is in `openapi.yaml`.
 
-- Endpoint: `/ws?token=<token>` — `player_token` from `POST /api/rooms/{pin}/join`, or the host JWT.
+- Endpoint: `/ws?token=<player_token>` for a player (token from `POST /api/rooms/{pin}/join`), or `/ws?token=<host JWT>&room=<room id>` for the host (`room` is the `id` returned by `POST /api/rooms`; the host must own that room).
+- Auth failures: invalid token → HTTP 401 and unknown/ended room → HTTP 404 (JSON `{code, message}`) before the upgrade; a token that is valid but not a member of the room (kicked player, other host) is closed with WebSocket close code `4401`.
 - Envelope: `{"t": "<type>", "d": {...}}` (`d` omitted when there is no data).
 - Keepalive: `ping` / `pong` every 20 s.
 - Content language: `prompt`, `label`, `explanation` are sent in the **player's** language only.
