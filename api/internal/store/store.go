@@ -71,6 +71,10 @@ type NewRoom struct {
 type Player struct {
 	ID, Nickname, School, Lang string
 	Avatar                     int
+
+	// Progress, restored when a room is reloaded from the database.
+	Score, CorrectCount, TotalMs, CurrentIndex, Streak int
+	Finished                                           bool
 }
 
 type NewPlayer struct {
@@ -202,7 +206,11 @@ func (s *Store) PlayersOfRoom(ctx context.Context, roomID string) ([]Player, err
 	}
 	players := make([]Player, 0, len(rows))
 	for _, r := range rows {
-		players = append(players, Player{ID: r.ID.String(), Nickname: r.Nickname, School: r.SchoolName, Lang: strings.TrimSpace(r.Lang), Avatar: int(r.Avatar)})
+		players = append(players, Player{
+			ID: r.ID.String(), Nickname: r.Nickname, School: r.SchoolName, Lang: strings.TrimSpace(r.Lang), Avatar: int(r.Avatar),
+			Score: int(r.Score), CorrectCount: int(r.CorrectCount), TotalMs: int(r.TotalMs),
+			CurrentIndex: int(r.CurrentIndex), Streak: int(r.Streak), Finished: r.Finished,
+		})
 	}
 	return players, nil
 }

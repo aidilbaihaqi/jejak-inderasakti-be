@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Status: foundation scaffolded
 
-Done: scaffold + migrations + seed (19 Sep); host login, rooms/join/schools REST, WS hub + room goroutine (lobby, host.start/end/kick, ping), question selector (20 Sep). Not built yet: `q.next`/`q.answer`, `Score()`, leaderboard/Redis, results.csv, rate limit (see `docs/10_Team_Workflow.md` §7). `docs/` holds 10 design documents (written in Indonesian) generated from three source documents; they are the specification for the backend that will live here. Read the relevant doc before writing code; do not re-derive decisions already recorded there.
+Done: scaffold + migrations + seed (19 Sep); host login, rooms/join/schools REST, WS hub + room goroutine, question selector (20 Sep); `Score()`, `q.next`/`q.answer` with per-player pacing, Redis leaderboard + throttled `lb.update`, reconnect, auto room end (21 Sep). Not built yet: results.csv, school leaderboard endpoint, rate limit, k6 load test (see `docs/10_Team_Workflow.md` §7). `docs/` holds 10 design documents (written in Indonesian) generated from three source documents; they are the specification for the backend that will live here. Read the relevant doc before writing code; do not re-derive decisions already recorded there.
 
 | Doc | Read it when |
 |---|---|

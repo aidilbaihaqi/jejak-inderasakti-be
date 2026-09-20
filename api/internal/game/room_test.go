@@ -13,12 +13,15 @@ import (
 const waitFor = 2 * time.Second
 
 type fakeStore struct {
-	mu      sync.Mutex
-	rooms   map[string]store.Room
-	players map[string][]store.Player
-	started []string
-	ended   []string
-	deleted []string
+	mu        sync.Mutex
+	rooms     map[string]store.Room
+	players   map[string][]store.Player
+	questions []store.Question
+	results   []store.Result
+	saveErr   error
+	started   []string
+	ended     []string
+	deleted   []string
 }
 
 func newFakeStore() *fakeStore {
@@ -39,6 +42,25 @@ func (f *fakeStore) PlayersOfRoom(_ context.Context, id string) ([]store.Player,
 	f.mu.Lock()
 	defer f.mu.Unlock()
 	return append([]store.Player(nil), f.players[id]...), nil
+}
+
+func (f *fakeStore) QuestionsByIDs(_ context.Context, ids []string) ([]store.Question, error) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	if len(ids) == 0 {
+		return nil, nil
+	}
+	return append([]store.Question(nil), f.questions...), nil
+}
+
+func (f *fakeStore) SaveResult(_ context.Context, r store.Result) error {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	if f.saveErr != nil {
+		return f.saveErr
+	}
+	f.results = append(f.results, r)
+	return nil
 }
 
 func (f *fakeStore) MarkRoomStarted(_ context.Context, id string) (bool, error) {
@@ -118,10 +140,9 @@ func setup(t *testing.T) (*Registry, *fakeStore, *Room) {
 	ctx, cancel := context.WithCancel(context.Background())
 	t.Cleanup(cancel)
 	st := newFakeStore()
-	reg := NewRegistry(ctx, st)
+	reg := NewRegistry(ctx, st, nil)
 	data := store.Room{ID: "room-1", PIN: "123456", HostID: "host-1", Jenjang: "SD", Status: StatusLobby}
 	st.rooms[data.ID] = data
-	reg.Open(data)
 	room, err := reg.Get(ctx, data.ID)
 	if err != nil {
 		t.Fatal(err)
@@ -262,7 +283,7 @@ func TestRunningRoomAutoEndsAtDeadline(t *testing.T) {
 	defer cancel()
 	st := newFakeStore()
 	st.rooms["r"] = store.Room{ID: "r", HostID: "h", Status: StatusRunning, StartedAt: time.Now().Add(-MaxRoomDuration + 80*time.Millisecond)}
-	reg := NewRegistry(ctx, st)
+	reg := NewRegistry(ctx, st, nil)
 	room, err := reg.Get(ctx, "r")
 	if err != nil {
 		t.Fatal(err)
@@ -279,7 +300,7 @@ func TestGetEndsExpiredRunningRoom(t *testing.T) {
 	ctx := context.Background()
 	st := newFakeStore()
 	st.rooms["r"] = store.Room{ID: "r", Status: StatusRunning, StartedAt: time.Now().Add(-MaxRoomDuration - time.Minute)}
-	reg := NewRegistry(ctx, st)
+	reg := NewRegistry(ctx, st, nil)
 	if _, err := reg.Get(ctx, "r"); err != store.ErrNotFound {
 		t.Fatalf("got %v, want ErrNotFound", err)
 	}
@@ -294,7 +315,7 @@ func TestGetLoadsRoomAndPlayersAfterRestart(t *testing.T) {
 	st := newFakeStore()
 	st.rooms["r"] = store.Room{ID: "r", HostID: "h", Status: StatusLobby}
 	st.players["r"] = []store.Player{player("p1")}
-	reg := NewRegistry(ctx, st)
+	reg := NewRegistry(ctx, st, nil)
 
 	room, err := reg.Get(ctx, "r")
 	if err != nil {

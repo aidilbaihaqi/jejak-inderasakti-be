@@ -9,6 +9,48 @@ import (
 	"context"
 )
 
+const getQuestionsByIDs = `-- name: GetQuestionsByIDs :many
+SELECT id, site, level, type, prompt, options, explanation FROM questions WHERE id = ANY($1::text[])
+`
+
+type GetQuestionsByIDsRow struct {
+	ID          string
+	Site        int16
+	Level       int16
+	Type        string
+	Prompt      []byte
+	Options     []byte
+	Explanation []byte
+}
+
+func (q *Queries) GetQuestionsByIDs(ctx context.Context, dollar_1 []string) ([]GetQuestionsByIDsRow, error) {
+	rows, err := q.db.Query(ctx, getQuestionsByIDs, dollar_1)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []GetQuestionsByIDsRow
+	for rows.Next() {
+		var i GetQuestionsByIDsRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.Site,
+			&i.Level,
+			&i.Type,
+			&i.Prompt,
+			&i.Options,
+			&i.Explanation,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listSelectableQuestions = `-- name: ListSelectableQuestions :many
 SELECT id, site, level FROM questions WHERE active = TRUE AND site BETWEEN 1 AND 5 ORDER BY id
 `

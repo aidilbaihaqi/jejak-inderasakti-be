@@ -27,6 +27,7 @@ type memStore struct {
 	rooms   map[string]store.Room
 	players map[string][]store.Player
 	ended   int
+	results []store.Result
 }
 
 func (m *memStore) RoomByID(_ context.Context, id string) (store.Room, error) {
@@ -43,6 +44,28 @@ func (m *memStore) PlayersOfRoom(_ context.Context, id string) ([]store.Player, 
 	defer m.mu.Unlock()
 	return m.players[id], nil
 }
+func (m *memStore) QuestionsByIDs(_ context.Context, ids []string) ([]store.Question, error) {
+	questions := make([]store.Question, 0, len(ids))
+	for _, id := range ids {
+		questions = append(questions, store.Question{
+			ID: id, Site: 1, Level: 1, Type: "mc",
+			Prompt: store.Text{ID: "Soal " + id, EN: "Question " + id}, Explanation: store.Text{ID: "Jelaskan", EN: "Explain"},
+			Options: []store.Option{
+				{ID: "opt-a", Label: store.Text{ID: "A", EN: "A"}},
+				{ID: "opt-b", Label: store.Text{ID: "B", EN: "B"}, Correct: true},
+			},
+		})
+	}
+	return questions, nil
+}
+
+func (m *memStore) SaveResult(_ context.Context, r store.Result) error {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	m.results = append(m.results, r)
+	return nil
+}
+
 func (m *memStore) MarkRoomStarted(context.Context, string) (bool, error) { return true, nil }
 func (m *memStore) MarkRoomEnded(context.Context, string) error {
 	m.mu.Lock()
@@ -68,10 +91,10 @@ func newEnv(t *testing.T) *env {
 		t.Fatal(err)
 	}
 	st := &memStore{
-		rooms:   map[string]store.Room{"room-1": {ID: "room-1", PIN: "123456", HostID: "host-1", Status: game.StatusLobby}},
+		rooms:   map[string]store.Room{"room-1": {ID: "room-1", PIN: "123456", HostID: "host-1", Jenjang: "SMP", Status: game.StatusLobby, QuestionIDs: []string{"Q1", "Q2"}}},
 		players: map[string][]store.Player{"room-1": {{ID: "p1", Nickname: "Budi", Avatar: 2, Lang: "id"}}},
 	}
-	reg := game.NewRegistry(ctx, st)
+	reg := game.NewRegistry(ctx, st, nil)
 	mux := http.NewServeMux()
 	mux.Handle("/ws", NewHandler(reg, tokens, true))
 	server := httptest.NewServer(mux)
@@ -272,5 +295,91 @@ func TestRejectsBadConnections(t *testing.T) {
 				t.Errorf("want close code %d, got %v", closeUnauthorized, err)
 			}
 		})
+	}
+}
+
+// expectSkippingLeaderboard reads until the wanted message arrives, ignoring lb.update pushes.
+func expectSkippingLeaderboard(t *testing.T, conn *websocket.Conn, msgType string) game.Message {
+	t.Helper()
+	for {
+		msg := read(t, conn)
+		if msg.T == msgType {
+			return msg
+		}
+		if msg.T != "lb.update" {
+			t.Fatalf("got %q (%v), want %q", msg.T, msg.D, msgType)
+		}
+	}
+}
+
+func TestPlayerPlaysAWholeSessionOverWebSocket(t *testing.T) {
+	e := newEnv(t)
+	player, host := e.playerConn(t), e.hostConn(t)
+	expect(t, player, "room.state")
+	expect(t, host, "room.state")
+
+	send(t, player, "q.next", nil)
+	if code := expect(t, player, "error").D.(map[string]any)["code"]; code != "ROOM_NOT_STARTED" {
+		t.Errorf("error code = %v", code)
+	}
+	send(t, player, "q.answer", map[string]any{"option_id": "opt-b"}) // missing question_id
+	if code := expect(t, player, "error").D.(map[string]any)["code"]; code != "INVALID_REQUEST" {
+		t.Errorf("error code = %v", code)
+	}
+
+	send(t, host, "host.start", nil)
+	expect(t, player, "room.started")
+	expect(t, host, "room.started")
+
+	for i, id := range []string{"Q1", "Q2"} {
+		send(t, player, "q.next", nil)
+		shown := expectSkippingLeaderboard(t, player, "q.show").D.(map[string]any)
+		if shown["index"] != float64(i) || shown["total"] != float64(2) || shown["limit_ms"] != float64(15000) {
+			t.Errorf("q.show = %v", shown)
+		}
+		if _, leaked := shown["correct"]; leaked {
+			t.Error("q.show leaked the answer key")
+		}
+		send(t, player, "q.answer", map[string]any{"question_id": id, "option_id": "opt-b"})
+		result := expectSkippingLeaderboard(t, player, "q.result").D.(map[string]any)
+		if result["correct"] != true || result["correct_option_id"] != "opt-b" || result["finished"] != (i == 1) {
+			t.Errorf("q.result = %v", result)
+		}
+		if points := result["points"].(float64); points < 300 || points > 500+float64(50*i) {
+			t.Errorf("points out of range: %v", points)
+		}
+	}
+
+	ended := expectSkippingLeaderboard(t, player, "room.ended").D.(map[string]any)
+	podium := ended["podium"].([]any)
+	if len(podium) != 1 || podium[0].(map[string]any)["score"].(float64) <= 0 {
+		t.Errorf("podium = %v", podium)
+	}
+	expectSkippingLeaderboard(t, host, "room.ended")
+
+	e.store.mu.Lock()
+	defer e.store.mu.Unlock()
+	if len(e.store.results) != 2 || !e.store.results[1].Finished || e.store.ended != 1 {
+		t.Errorf("results = %+v, ended = %d", e.store.results, e.store.ended)
+	}
+}
+
+func TestHostReceivesLeaderboardUpdates(t *testing.T) {
+	e := newEnv(t)
+	player, host := e.playerConn(t), e.hostConn(t)
+	expect(t, player, "room.state")
+	expect(t, host, "room.state")
+	send(t, host, "host.start", nil)
+	expect(t, host, "room.started")
+	expect(t, player, "room.started")
+
+	send(t, player, "q.next", nil)
+	expectSkippingLeaderboard(t, player, "q.show")
+	send(t, player, "q.answer", map[string]any{"question_id": "Q1", "option_id": "opt-b"})
+
+	rows := expect(t, host, "lb.update").D.(map[string]any)["rankings"].([]any)
+	first := rows[0].(map[string]any)
+	if first["rank"] != float64(1) || first["nickname"] != "Budi" || first["correct_count"] != float64(1) || first["score"].(float64) <= 0 {
+		t.Errorf("rankings = %v", rows)
 	}
 }

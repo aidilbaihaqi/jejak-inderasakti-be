@@ -61,11 +61,9 @@ func (f *fakeStore) SearchSchools(context.Context, string) ([]store.School, erro
 func (f *fakeStore) QuestionPool(context.Context) ([]store.QuestionRef, error) { return f.pool, nil }
 
 type fakeRooms struct {
-	opened []store.Room
-	added  []store.Player
+	added []store.Player
 }
 
-func (f *fakeRooms) Open(room store.Room) { f.opened = append(f.opened, room) }
 func (f *fakeRooms) AddPlayer(_ context.Context, _ string, p store.Player) error {
 	f.added = append(f.added, p)
 	return nil
@@ -209,9 +207,6 @@ func TestCreateRoom(t *testing.T) {
 	if len(h.store.createdWith.QuestionIDs) != 15 || h.store.createdWith.HostID != "host-1" {
 		t.Errorf("room created with %+v", h.store.createdWith)
 	}
-	if len(h.rooms.opened) != 1 {
-		t.Error("room goroutine was not opened")
-	}
 }
 
 func TestCreateRoomShortSessionSelectsTen(t *testing.T) {
@@ -253,9 +248,6 @@ func TestCreateRoomMaxRooms(t *testing.T) {
 	status, body := h.do(t, "POST", "/api/rooms", h.hostToken(t), map[string]any{"jenjang": "SD", "consent_confirmed": true})
 	if status != 409 || body["code"] != "MAX_ROOMS" {
 		t.Errorf("got %d %v", status, body)
-	}
-	if len(h.rooms.opened) != 0 {
-		t.Error("no room should be opened on failure")
 	}
 }
 
