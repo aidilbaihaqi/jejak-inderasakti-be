@@ -1,0 +1,3156 @@
+[
+  {
+    "id": "M1-01",
+    "site": 1,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Berapa jumlah kubah di atap Masjid Raya Sultan Riau?",
+      "en": "How many domes does the Masjid Raya Sultan Riau have on its roof?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "9",
+          "en": "9"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "13",
+          "en": "13"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "17",
+          "en": "17"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "21",
+          "en": "21"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Masjid ini memiliki 13 kubah yang tersusun berbaris di atasnya.",
+      "en": "The mosque has 13 domes arranged in rows on its roof."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-02",
+    "site": 1,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Ada berapa menara di sudut-sudut Masjid Raya Sultan Riau?",
+      "en": "How many minarets stand at the corners of Masjid Raya Sultan Riau?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "2",
+          "en": "2"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "4",
+          "en": "4"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "6",
+          "en": "6"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "8",
+          "en": "8"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Di setiap sudut masjid terdapat menara, totalnya 4 menara setinggi 18,9 meter.",
+      "en": "Each corner of the mosque has a minaret, four in total, each 18.9 metres tall."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-03",
+    "site": 1,
+    "level": 1,
+    "type": "tf",
+    "prompt": {
+      "id": "Benar atau Salah: dinding Masjid Raya Sultan Riau memakai campuran putih telur sebagai bahan perekat.",
+      "en": "True or False: the walls of Masjid Raya Sultan Riau used egg white mixed in as a binding material."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Benar",
+          "en": "True"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Salah",
+          "en": "False"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Warga sekitar mengumpulkan putih telur untuk dicampur kapur dan pasir sebagai pengganti semen.",
+      "en": "Local residents collected egg whites to mix with lime and sand as a substitute for cement."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-04",
+    "site": 1,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa warna utama bangunan Masjid Raya Sultan Riau yang tampak dari kejauhan?",
+      "en": "What is the main colour of Masjid Raya Sultan Riau as seen from a distance?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Kuning cerah berpadu hijau",
+          "en": "Bright yellow with green accents"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Putih polos",
+          "en": "Plain white"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Merah bata",
+          "en": "Brick red"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Biru laut",
+          "en": "Sea blue"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Masjid ini dikenal berwarna kuning cerah berpadu hijau, mencolok dari kejauhan.",
+      "en": "The mosque is known for its bright yellow colour with green accents, standing out from afar."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-05",
+    "site": 1,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Berapa jumlah rumah sotoh yang berada di halaman Masjid Raya Sultan Riau?",
+      "en": "How many 'rumah sotoh' (open pavilions) stand in the mosque's courtyard?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "1",
+          "en": "1"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "2",
+          "en": "2"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "3",
+          "en": "3"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "4",
+          "en": "4"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Ada dua rumah sotoh di halaman masjid, untuk musafir menginap dan tempat bermusyawarah.",
+      "en": "Two rumah sotoh stand in the courtyard, used for travellers to stay and for community meetings."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-06",
+    "site": 1,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Jika jumlah kubah (13) dan menara (4) Masjid Raya Sultan Riau dijumlahkan, angka 17 itu melambangkan apa?",
+      "en": "If the mosque's domes (13) and minarets (4) are added together to make 17, what does that number symbolise?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Jumlah wali songo",
+          "en": "The nine Wali Songo"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Jumlah rakaat sholat fardu sehari semalam",
+          "en": "The number of daily obligatory prayer cycles (rakaat)"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Jumlah tahun pembangunan",
+          "en": "The number of years of construction"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Jumlah kerajaan Melayu",
+          "en": "The number of Malay kingdoms"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Total 17 kubah dan menara dimaknai sebagai jumlah rakaat sholat fardu yang dikerjakan umat Islam tiap hari.",
+      "en": "The total of 17 domes and minarets is meant to symbolise the 17 daily obligatory prayer cycles in Islam."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-07",
+    "site": 1,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Siapa Yang Dipertuan Muda yang memerintahkan renovasi Masjid Raya ke bentuk megah yang terlihat sekarang pada 1832?",
+      "en": "Which Yang Dipertuan Muda ordered the mosque's 1832 renovation into the grand form seen today?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Ali Haji",
+          "en": "Raja Ali Haji"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Abdurrahman (YDM VII)",
+          "en": "Raja Abdurrahman (7th Yang Dipertuan Muda)"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Haji Fisabilillah",
+          "en": "Raja Haji Fisabilillah"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Raja Daud",
+          "en": "Raja Daud"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Abdurrahman, Yang Dipertuan Muda Riau VII, mengajak warga bergotong royong merenovasi masjid ke bentuk sekarang pada 1832.",
+      "en": "Raja Abdurrahman, the 7th Yang Dipertuan Muda of Riau, led the community effort to renovate the mosque into its present form in 1832."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-08",
+    "site": 1,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa fungsi utama rumah sotoh di halaman Masjid Raya Sultan Riau?",
+      "en": "What was the main function of the rumah sotoh in the mosque's courtyard?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Menyimpan senjata kerajaan",
+          "en": "Storing the kingdom's weapons"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Tempat musafir bermalam dan bermusyawarah",
+          "en": "A place for travellers to stay and for community meetings"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Rumah tinggal sultan",
+          "en": "The sultan's residence"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Tempat memandikan jenazah",
+          "en": "A place to wash the deceased"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Rumah sotoh berfungsi sebagai tempat singgah musafir sekaligus lokasi musyawarah warga.",
+      "en": "The rumah sotoh served as a resting place for travellers and as a venue for community discussions."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-09",
+    "site": 1,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa nama galeri di dalam Masjid Raya yang menyimpan naskah kuno tulisan tangan?",
+      "en": "What is the name of the gallery inside Masjid Raya that houses handwritten ancient manuscripts?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Galeri Kutubkhanah",
+          "en": "Kutubkhanah Gallery"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Balai Adat",
+          "en": "Balai Adat"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Rumah Baca",
+          "en": "Rumah Baca (Reading House)"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Gedung Arsip",
+          "en": "Archive Building"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Galeri Kutubkhanah atau perpustakaan Marhum Ahmadi menyimpan kitab-kitab tulisan tangan tentang ilmu pengetahuan.",
+      "en": "The Kutubkhanah Gallery, or Marhum Ahmadi library, holds handwritten manuscripts on various fields of knowledge."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-10",
+    "site": 1,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah urutan sejarah pembangunan Masjid Raya Sultan Riau yang PALING tepat?",
+      "en": "Which of these BEST describes the historical construction sequence of Masjid Raya Sultan Riau?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Dibangun langsung megah dari batu pada 1832 tanpa bangunan sebelumnya",
+          "en": "Built directly as a grand stone structure in 1832 with no earlier building"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Awalnya bangunan sederhana berbahan kayu dan bata sejak awal abad ke-19, lalu direnovasi ke bentuk sekarang pada 1832",
+          "en": "Originally a simple wood-and-brick structure from the early 19th century, later renovated into its present form in 1832"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Dibangun oleh pemerintah kolonial pada abad ke-20",
+          "en": "Built by the colonial government in the 20th century"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Direnovasi pertama kali pada 1900-an",
+          "en": "First renovated in the 1900s"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Masjid mulanya sederhana sejak awal abad ke-19, lalu direnovasi menjadi bentuk megah sekarang pada 1832 atas perintah Raja Abdurrahman.",
+      "en": "The mosque began as a simple structure in the early 19th century, then was renovated into its grand present form in 1832 under Raja Abdurrahman."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-11",
+    "site": 1,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa Masjid Raya Sultan Riau disebut istimewa di antara peninggalan Kerajaan Riau-Lingga?",
+      "en": "Why is Masjid Raya Sultan Riau considered special among the Riau-Lingga Kingdom's remaining heritage sites?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena satu-satunya masjid berkubah emas di Indonesia",
+          "en": "Because it is the only gold-domed mosque in Indonesia"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena masih berdiri utuh dan tetap dipakai warga beribadah hingga kini",
+          "en": "Because it still stands intact and is still used by residents for worship today"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena dibangun terakhir kali oleh Belanda",
+          "en": "Because it was last built by the Dutch"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena tidak memiliki menara",
+          "en": "Because it has no minarets"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Masjid ini dianggap satu-satunya peninggalan Kerajaan Riau-Lingga yang masih utuh dan tetap digunakan untuk ibadah.",
+      "en": "The mosque is considered the only intact remaining heritage of the Riau-Lingga Kingdom, still actively used for worship."
+    },
+    "active": true
+  },
+  {
+    "id": "M1-12",
+    "site": 1,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah pernyataan yang SALAH tentang Masjid Raya Sultan Riau?",
+      "en": "Which of these statements about Masjid Raya Sultan Riau is INCORRECT?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Memiliki 13 kubah dan 4 menara",
+          "en": "It has 13 domes and 4 minarets"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Bahan perekat dindingnya memakai campuran putih telur",
+          "en": "Its wall binder includes a mixture of egg white"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Dibangun dari beton bertulang modern sejak awal berdiri",
+          "en": "It was built from modern reinforced concrete from the very start"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Warna utamanya kuning berpadu hijau",
+          "en": "Its main colour is yellow with green accents"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Masjid ini awalnya bangunan sederhana berbahan kayu dan bata; teknologi semen dan beton modern belum dikenal saat direnovasi pada 1832.",
+      "en": "The mosque was originally a simple wood-and-brick building; modern cement and concrete technology were not yet known when it was renovated in 1832."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-01",
+    "site": 2,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Siapa nama asli Engku Putri yang dimakamkan di kompleks ini?",
+      "en": "What is the birth name of Engku Putri, buried in this tomb complex?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Hamidah",
+          "en": "Raja Hamidah"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Aisyah",
+          "en": "Raja Aisyah"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Siti",
+          "en": "Raja Siti"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Raja Fatimah",
+          "en": "Raja Fatimah"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Engku Putri dikenal juga dengan nama Raja Hamidah, permaisuri Sultan Mahmud Riayat Syah III.",
+      "en": "Engku Putri is also known as Raja Hamidah, the consort of Sultan Mahmud Riayat Syah III."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-02",
+    "site": 2,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Engku Putri adalah putri dari tokoh kerajaan bernama...",
+      "en": "Engku Putri was the daughter of which royal figure?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Ali Haji",
+          "en": "Raja Ali Haji"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Haji Fisabilillah",
+          "en": "Raja Haji Fisabilillah"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Ahmad",
+          "en": "Raja Ahmad"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Raja Daud",
+          "en": "Raja Daud"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Engku Putri (Raja Hamidah) adalah putri Raja Haji Fisabilillah, Yang Dipertuan Muda Riau IV.",
+      "en": "Engku Putri (Raja Hamidah) was the daughter of Raja Haji Fisabilillah, the 4th Yang Dipertuan Muda of Riau."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-03",
+    "site": 2,
+    "level": 1,
+    "type": "tf",
+    "prompt": {
+      "id": "Benar atau Salah: Pulau Penyengat diberikan sebagai mahar/mas kawin kepada Engku Putri.",
+      "en": "True or False: Penyengat Island was given as a dowry to Engku Putri."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Benar",
+          "en": "True"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Salah",
+          "en": "False"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Menurut cerita yang berkembang, Pulau Penyengat diberikan sebagai mahar kepada Engku Putri pada awal abad ke-19.",
+      "en": "According to popular accounts, Penyengat Island was given as a dowry to Engku Putri in the early 19th century."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-04",
+    "site": 2,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Selain Engku Putri, tokoh pujangga apa yang juga dimakamkan di kompleks ini?",
+      "en": "Besides Engku Putri, which literary figure is also buried in this complex?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Ali Haji",
+          "en": "Raja Ali Haji"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Kecik",
+          "en": "Raja Kecik"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Ismail",
+          "en": "Raja Ismail"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Raja Muhammad",
+          "en": "Raja Muhammad"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Ali Haji, pengarang Gurindam Dua Belas dan Pahlawan Nasional, dimakamkan di kompleks makam ini.",
+      "en": "Raja Ali Haji, author of Gurindam Dua Belas and a National Hero, is buried in this tomb complex."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-05",
+    "site": 2,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Raja Abdurrahman yang dimakamkan di kompleks ini menjabat sebagai...",
+      "en": "What title did Raja Abdurrahman, buried in this complex, hold?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Yang Dipertuan Muda Riau VII",
+          "en": "7th Yang Dipertuan Muda of Riau"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Tabib kerajaan",
+          "en": "The kingdom's royal physician"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Panglima laut",
+          "en": "Naval commander"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Bendahara kerajaan",
+          "en": "Kingdom's treasurer"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Abdurrahman adalah Yang Dipertuan Muda Riau VII yang memerintahkan renovasi Masjid Raya pada 1832.",
+      "en": "Raja Abdurrahman was the 7th Yang Dipertuan Muda of Riau, who ordered the mosque's renovation in 1832."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-06",
+    "site": 2,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa fungsi 'regalia' kerajaan yang dijaga oleh Engku Putri semasa hidupnya?",
+      "en": "What was the function of the royal 'regalia' guarded by Engku Putri during her lifetime?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Sebagai alat kebesaran wajib untuk penobatan Sultan agar sah menurut adat",
+          "en": "As ceremonial royal items required to legitimise a Sultan's coronation by custom"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Sebagai mas kawin untuk anaknya",
+          "en": "As a dowry for her child"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Sebagai perhiasan pribadi",
+          "en": "As personal jewellery"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Sebagai alat berperang",
+          "en": "As weapons of war"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Regalia terdiri dari cogan, tepak sirih, ketor, keris panjang, dan nobat, yang wajib ada saat pelantikan Sultan agar sah menurut adat.",
+      "en": "The regalia included a cogan, betel-nut set, ketor, long keris, and nobat drum, all required for a Sultan's coronation to be considered legitimate by custom."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-07",
+    "site": 2,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa Raja Abdurrahman penting dalam sejarah Masjid Raya Sultan Riau?",
+      "en": "Why is Raja Abdurrahman important to the history of Masjid Raya Sultan Riau?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena beliau memerintahkan renovasi masjid ke bentuk sekarang pada 1832",
+          "en": "Because he ordered the mosque's renovation into its present form in 1832"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena beliau membangun Istana Kantor",
+          "en": "Because he built Istana Kantor"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena beliau menulis Gurindam Dua Belas",
+          "en": "Because he wrote Gurindam Dua Belas"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena beliau seorang tabib",
+          "en": "Because he was a royal physician"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Sebagai Yang Dipertuan Muda Riau VII, Raja Abdurrahman mengajak warga bergotong royong merenovasi masjid pada 1832.",
+      "en": "As the 7th Yang Dipertuan Muda of Riau, Raja Abdurrahman led the community effort to renovate the mosque in 1832."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-08",
+    "site": 2,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Karya sastra apa yang teksnya tertulis di dinding bagian dalam kompleks makam ini?",
+      "en": "Which literary work is inscribed on the interior walls of this tomb complex?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Kitab Ilmu Tabib",
+          "en": "Kitab Ilmu Tabib"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Gurindam Dua Belas",
+          "en": "Gurindam Dua Belas"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Kitab Pengetahuan Bahasa",
+          "en": "Kitab Pengetahuan Bahasa"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Hikayat Hang Tuah",
+          "en": "Hikayat Hang Tuah"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Di bagian dalam makam terdapat tulisan berisi pasal-pasal Gurindam Dua Belas karya Raja Ali Haji.",
+      "en": "The interior of the tomb bears inscriptions of the verses of Gurindam Dua Belas, written by Raja Ali Haji."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-09",
+    "site": 2,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa hubungan kekerabatan antara Engku Putri dan Raja Ali Haji?",
+      "en": "What is the family relationship between Engku Putri and Raja Ali Haji?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Engku Putri adalah bibi Raja Ali Haji",
+          "en": "Engku Putri was Raja Ali Haji's aunt"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Mereka tidak memiliki hubungan keluarga",
+          "en": "They have no family relation"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Engku Putri adalah anak dari Raja Ali Haji",
+          "en": "Engku Putri was Raja Ali Haji's child"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Raja Ali Haji adalah kakek Engku Putri",
+          "en": "Raja Ali Haji was Engku Putri's grandfather"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Engku Putri dan Raja Ahmad (ayah Raja Ali Haji) sama-sama anak Raja Haji Fisabilillah, sehingga Engku Putri adalah bibi Raja Ali Haji.",
+      "en": "Engku Putri and Raja Ahmad (Raja Ali Haji's father) were both children of Raja Haji Fisabilillah, making Engku Putri the aunt of Raja Ali Haji."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-10",
+    "site": 2,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah pernyataan yang SALAH tentang Raja Abdurrahman dalam game ini?",
+      "en": "Which statement about Raja Abdurrahman in this game is INCORRECT?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Beliau adalah Yang Dipertuan Muda Riau VII",
+          "en": "He was the 7th Yang Dipertuan Muda of Riau"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Beliau memerintahkan renovasi Masjid Raya pada 1832",
+          "en": "He ordered the mosque's renovation in 1832"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Beliau adalah penulis Gurindam Dua Belas",
+          "en": "He was the author of Gurindam Dua Belas"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Beliau dimakamkan di kompleks makam bangsawan Pulau Penyengat",
+          "en": "He is buried in the noble tomb complex on Penyengat Island"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Gurindam Dua Belas ditulis oleh Raja Ali Haji, bukan Raja Abdurrahman.",
+      "en": "Gurindam Dua Belas was written by Raja Ali Haji, not Raja Abdurrahman."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-11",
+    "site": 2,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa kompleks makam Engku Putri penting dalam sistem pemerintahan Kerajaan Riau-Lingga, bukan hanya sebagai tempat pemakaman?",
+      "en": "Why was Engku Putri's tomb complex important to the Riau-Lingga Kingdom's governance, beyond being a burial site?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena regalia kerajaan dijaga olehnya, syarat sahnya penobatan Sultan",
+          "en": "Because she guarded the royal regalia, required for a Sultan's coronation to be valid"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena di sinilah pusat perdagangan kerajaan",
+          "en": "Because it was the kingdom's trade centre"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena di sinilah lokasi benteng pertahanan utama",
+          "en": "Because it was the main defence fortress"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena di sinilah pabrik senjata kerajaan",
+          "en": "Because it was the kingdom's weapons factory"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Engku Putri memegang regalia kerajaan yang menjadi syarat sah pelantikan Sultan menurut adat, menjadikannya tokoh penting dalam pemerintahan.",
+      "en": "Engku Putri held the royal regalia required by custom to legitimise a Sultan's coronation, making her a key figure in governance."
+    },
+    "active": true
+  },
+  {
+    "id": "M2-12",
+    "site": 2,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Urutan peristiwa yang benar terkait dua tokoh di stage ini adalah...",
+      "en": "Which is the correct sequence of events involving the two figures in this stage?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Abdurrahman merenovasi masjid pada 1832, Engku Putri wafat pada 1844",
+          "en": "Raja Abdurrahman renovated the mosque in 1832; Engku Putri passed away in 1844"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Engku Putri merenovasi masjid, Raja Abdurrahman menulis Gurindam 12",
+          "en": "Engku Putri renovated the mosque; Raja Abdurrahman wrote Gurindam 12"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Keduanya adalah tabib kerajaan",
+          "en": "Both were royal physicians"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Keduanya memerintah sebagai Sultan pada waktu yang sama",
+          "en": "Both ruled as Sultan at the same time"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Abdurrahman merenovasi Masjid Raya pada 1832; Engku Putri wafat pada 7 Juli 1844 di Pulau Penyengat.",
+      "en": "Raja Abdurrahman renovated Masjid Raya in 1832; Engku Putri passed away on 7 July 1844 on Penyengat Island."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-01",
+    "site": 3,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Istana Kantor merupakan kediaman dan kantor kerja dari...",
+      "en": "Istana Kantor served as the residence and workplace of..."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Ali, Yang Dipertuan Muda VIII",
+          "en": "Raja Ali, the 8th Yang Dipertuan Muda"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Abdurrahman",
+          "en": "Raja Abdurrahman"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Daud",
+          "en": "Raja Daud"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Engku Putri",
+          "en": "Engku Putri"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Istana Kantor dibangun sebagai kediaman sekaligus kantor kerja Raja Ali, Yang Dipertuan Muda Riau-Lingga VIII.",
+      "en": "Istana Kantor was built as the residence and workplace of Raja Ali, the 8th Yang Dipertuan Muda of Riau-Lingga."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-02",
+    "site": 3,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Istana Kantor dikelilingi oleh...",
+      "en": "What surrounds Istana Kantor?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Parit air",
+          "en": "A water moat"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Tembok keliling dengan tiga pintu masuk",
+          "en": "A perimeter wall with three entrance gates"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Hutan bakau",
+          "en": "A mangrove forest"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Pagar bambu",
+          "en": "A bamboo fence"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Seluruh areal istana dibatasi tembok keliling dengan tiga pintu masuk dari arah barat, utara, dan timur.",
+      "en": "The whole palace grounds are enclosed by a perimeter wall with three entrance gates from the west, north, and east."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-03",
+    "site": 3,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Berapa lantai bangunan utama Istana Kantor yang masih berdiri sekarang?",
+      "en": "How many storeys does the surviving main building of Istana Kantor have?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Satu lantai",
+          "en": "One storey"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Dua lantai",
+          "en": "Two storeys"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Tiga lantai",
+          "en": "Three storeys"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Empat lantai",
+          "en": "Four storeys"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Bangunan utama yang tersisa adalah bangunan bertingkat dua.",
+      "en": "The surviving main building has two storeys."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-04",
+    "site": 3,
+    "level": 1,
+    "type": "tf",
+    "prompt": {
+      "id": "Benar atau Salah: salah satu pintu gerbang Istana Kantor berfungsi sebagai pos penjagaan dan pengintaian.",
+      "en": "True or False: one of Istana Kantor's gates functioned as a guard and lookout post."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Benar",
+          "en": "True"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Salah",
+          "en": "False"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Pintu gapura di sisi barat berbentuk gapura berlantai dua yang berfungsi sebagai pos penjagaan dan pengintaian.",
+      "en": "The western gate is a two-storey gapura that served as a guard and lookout post."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-05",
+    "site": 3,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Sekitar tahun berapa Raja Ali memerintah sebagai Yang Dipertuan Muda VIII dan menempati Istana Kantor?",
+      "en": "Around which years did Raja Ali rule as the 8th Yang Dipertuan Muda and occupy Istana Kantor?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "1700-an",
+          "en": "1700s"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "1780-an",
+          "en": "1780s"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "1844-1857",
+          "en": "1844-1857"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "1900-an",
+          "en": "1900s"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Ali, Yang Dipertuan Muda VIII, memerintah dan tinggal di Istana Kantor pada rentang 1844-1857.",
+      "en": "Raja Ali, the 8th Yang Dipertuan Muda, ruled and lived at Istana Kantor from 1844 to 1857."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-06",
+    "site": 3,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa gaya arsitektur yang tampak pada bangunan Istana Kantor menurut kajian arsitektur?",
+      "en": "What architectural style does research identify in Istana Kantor's building?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Murni gaya Melayu tradisional tanpa pengaruh luar",
+          "en": "Purely traditional Malay style with no outside influence"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Perpaduan pengaruh Eropa (kolonial) dengan Melayu",
+          "en": "A blend of European (colonial) influence with Malay style"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Gaya arsitektur Tiongkok klasik",
+          "en": "Classical Chinese architectural style"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Gaya arsitektur Timur Tengah murni",
+          "en": "Purely Middle Eastern architectural style"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Kajian arsitektur menyebut Istana Kantor sebagai akulturasi Melayu dengan pengaruh Eropa, Timur Tengah, dan India.",
+      "en": "Architectural studies describe Istana Kantor as a Malay acculturation with European, Middle Eastern, and Indian influences."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-07",
+    "site": 3,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa fungsi pintu gerbang yang mengarah ke kolam pemandian di Istana Kantor?",
+      "en": "What was the function of the gate leading to the bathing pool at Istana Kantor?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Sebagai pintu darurat",
+          "en": "An emergency exit"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Sebagai jalan menuju tempat pemandian",
+          "en": "A path leading to the bathing area"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Sebagai gudang senjata",
+          "en": "A weapons storehouse"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Sebagai kandang kuda",
+          "en": "A horse stable"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Salah satu pintu gerbang istana berfungsi sebagai jalan menuju kolam pemandian di area istana.",
+      "en": "One of the palace gates served as the path to the bathing pool within the palace grounds."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-08",
+    "site": 3,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Karya sastra terkenal apa yang ditulis di lingkungan Istana Kantor oleh Raja Ali Haji?",
+      "en": "Which famous literary work did Raja Ali Haji write within the Istana Kantor grounds?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Kitab Ilmu Tabib",
+          "en": "Kitab Ilmu Tabib"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Gurindam Dua Belas",
+          "en": "Gurindam Dua Belas"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Hikayat Hang Tuah",
+          "en": "Hikayat Hang Tuah"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Kitab Pengetahuan Bahasa",
+          "en": "Kitab Pengetahuan Bahasa"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Ali Haji menulis Gurindam Dua Belas di lingkungan Istana Kantor, selesai pada 1847.",
+      "en": "Raja Ali Haji wrote Gurindam Dua Belas within the Istana Kantor grounds, completing it in 1847."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-09",
+    "site": 3,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa yang terdapat di lantai pertama bangunan utama Istana Kantor?",
+      "en": "What is found on the first floor of Istana Kantor's main building?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Perpustakaan dan ruang sholat",
+          "en": "A library and a prayer room"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Sumur dan kakus",
+          "en": "A well and a latrine"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Dapur dan lumbung",
+          "en": "A kitchen and a granary"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Kandang hewan",
+          "en": "An animal pen"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Pada lantai pertama bangunan, terdapat sumur di satu sisi dan kakus di sisi lainnya.",
+      "en": "On the first floor, there is a well on one side and a latrine on the other."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-10",
+    "site": 3,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah pernyataan yang PALING tepat membedakan Raja Ali (pemilik Istana Kantor) dan Raja Ali Haji (penulis Gurindam 12)?",
+      "en": "Which statement BEST distinguishes Raja Ali (owner of Istana Kantor) from Raja Ali Haji (author of Gurindam 12)?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Keduanya adalah orang yang sama",
+          "en": "They are the same person"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Ali adalah Yang Dipertuan Muda VIII pemilik Istana Kantor, sedangkan Raja Ali Haji adalah pujangga yang menulis Gurindam 12 di lingkungan istana itu",
+          "en": "Raja Ali was the 8th Yang Dipertuan Muda who owned Istana Kantor, while Raja Ali Haji was the scholar who wrote Gurindam 12 within its grounds"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Ali Haji adalah tabib kerajaan",
+          "en": "Raja Ali Haji was the kingdom's royal physician"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Raja Ali adalah pendiri Masjid Raya",
+          "en": "Raja Ali was the founder of Masjid Raya"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Meski namanya mirip, Raja Ali (YDM VIII, penguasa Istana Kantor) dan Raja Ali Haji (pujangga penulis Gurindam 12) adalah dua kerabat kerajaan yang berbeda.",
+      "en": "Despite similar names, Raja Ali (the 8th Yang Dipertuan Muda who ruled Istana Kantor) and Raja Ali Haji (the scholar who wrote Gurindam 12) were two different royal relatives."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-11",
+    "site": 3,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah pernyataan yang SALAH tentang Istana Kantor?",
+      "en": "Which statement about Istana Kantor is INCORRECT?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Merupakan kediaman dan kantor kerja Raja Ali YDM VIII",
+          "en": "It was the residence and office of Raja Ali, the 8th Yang Dipertuan Muda"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Dikelilingi tembok dengan tiga pintu masuk",
+          "en": "It is surrounded by a wall with three gates"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Beratap kubah emas bergaya Eropa mewah",
+          "en": "It has a luxurious European-style golden dome roof"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Bangunan utamanya berlantai dua",
+          "en": "Its main building has two storeys"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Istana Kantor tidak memiliki atap kubah emas; atapnya berbentuk limasan sederhana hasil pemugaran.",
+      "en": "Istana Kantor does not have a golden dome roof; its roof is a simple pyramidal (limasan) form from restoration work."
+    },
+    "active": true
+  },
+  {
+    "id": "M3-12",
+    "site": 3,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa Istana Kantor penting dalam sejarah kesusastraan Melayu, selain sebagai pusat pemerintahan?",
+      "en": "Beyond being a seat of government, why is Istana Kantor important to Malay literary history?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena menjadi tempat lahir Raja Ali Haji",
+          "en": "Because Raja Ali Haji was born there"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena di lingkungan istana inilah Gurindam Dua Belas ditulis dan diselesaikan",
+          "en": "Because Gurindam Dua Belas was written and completed within the palace grounds"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena menjadi tempat penyimpanan Al-Quran tertua",
+          "en": "Because it stored the oldest Quran manuscript"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena menjadi lokasi pembangunan pertama Masjid Raya",
+          "en": "Because it was where Masjid Raya was first built"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Di lingkungan Istana Kantor inilah Raja Ali Haji menuliskan Gurindam Dua Belas, karya berisi nasihat hidup, bersahabat, dan memerintah negeri.",
+      "en": "It was within the Istana Kantor grounds that Raja Ali Haji wrote Gurindam Dua Belas, a work of advice on life, friendship, and governance."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-01",
+    "site": 4,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Gedung Tabib dahulu merupakan kediaman seorang tokoh bernama...",
+      "en": "Gedung Tabib was once the residence of a figure named..."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Daud",
+          "en": "Raja Daud"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Ali Haji",
+          "en": "Raja Ali Haji"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Abdurrahman",
+          "en": "Raja Abdurrahman"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Engku Putri",
+          "en": "Engku Putri"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Gedung Tabib adalah bekas kediaman Tabib Raja Daud, tabib tersohor pada masa Kerajaan Riau-Lingga.",
+      "en": "Gedung Tabib was once the residence of the royal physician Raja Daud, renowned during the Riau-Lingga Kingdom era."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-02",
+    "site": 4,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa kondisi bangunan Gedung Tabib saat ini?",
+      "en": "What is the current condition of the Gedung Tabib building?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Utuh dan masih beratap",
+          "en": "Intact and still roofed"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Tinggal kerangka dinding bata tanpa atap",
+          "en": "Only the brick wall frame remains, without a roof"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Sudah menjadi museum modern",
+          "en": "It has become a modern museum"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Sudah rata dengan tanah",
+          "en": "It has been razed to the ground"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Gedung Tabib kini hanya menyisakan susunan dinding bata tanpa atap, dengan pohon tumbuh merambat di sela-selanya.",
+      "en": "Gedung Tabib today is only a brick wall frame without a roof, with a tree growing through the gaps."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-03",
+    "site": 4,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa fungsi utama Gedung Tabib pada masa Kerajaan Riau-Lingga?",
+      "en": "What was the main function of Gedung Tabib during the Riau-Lingga Kingdom era?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Tempat berobat dan meracik obat herbal",
+          "en": "A place for treatment and preparing herbal medicine"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Gudang senjata",
+          "en": "A weapons storehouse"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Tempat penyimpanan padi",
+          "en": "A rice storage building"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Balai pertemuan raja-raja",
+          "en": "A meeting hall for kings"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Gedung ini digunakan Tabib Raja Daud untuk mengobati pasien dan meracik obat dari bahan-bahan herbal.",
+      "en": "The building was used by the physician Raja Daud to treat patients and prepare medicine from herbal ingredients."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-04",
+    "site": 4,
+    "level": 1,
+    "type": "tf",
+    "prompt": {
+      "id": "Benar atau Salah: Gedung Tabib pada masa kejayaannya memiliki dua tingkat lantai.",
+      "en": "True or False: at its peak, Gedung Tabib had two storeys."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Benar",
+          "en": "True"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Salah",
+          "en": "False"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Gedung Tabib merupakan bangunan berlantai dua pada masa kejayaannya.",
+      "en": "Gedung Tabib was a two-storey building during its heyday."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-05",
+    "site": 4,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa yang kini tumbuh merambat di sela-sela dinding Gedung Tabib?",
+      "en": "What now grows through the gaps in Gedung Tabib's walls?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Pohon",
+          "en": "A tree"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Bunga anggrek",
+          "en": "Orchid flowers"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Rumput laut",
+          "en": "Seaweed"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Lumut karang",
+          "en": "Coral moss"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Pohon tumbuh merambat di sela-sela dinding bata Gedung Tabib yang tersisa.",
+      "en": "A tree grows through the gaps of Gedung Tabib's remaining brick walls."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-06",
+    "site": 4,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Naskah apa yang menjadi keputusan resmi game ini sebagai karya Tabib Raja Daud?",
+      "en": "Which manuscript does this game officially credit to the physician Raja Daud?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Naskah Ilmu Tabib",
+          "en": "The Ilmu Tabib manuscript"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Gurindam Dua Belas",
+          "en": "Gurindam Dua Belas"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Kitab Pengetahuan Bahasa",
+          "en": "Kitab Pengetahuan Bahasa"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Hikayat Hang Tuah",
+          "en": "Hikayat Hang Tuah"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Riset menemukan naskah Ilmu Tabib ditulis Raja Haji Daud, terpisah dari naskah Rumah Obat karya penulis lain.",
+      "en": "Research found the Ilmu Tabib manuscript was written by Raja Haji Daud, separate from the Rumah Obat manuscript by another author."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-07",
+    "site": 4,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Bahan apa yang biasa digunakan Tabib Raja Daud dalam meracik obat?",
+      "en": "What ingredients did the physician Raja Daud typically use to prepare medicine?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Bahan kimia sintetis",
+          "en": "Synthetic chemicals"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Bahan-bahan herbal/tumbuhan",
+          "en": "Herbal/plant-based ingredients"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Logam mulia",
+          "en": "Precious metals"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Batu permata",
+          "en": "Gemstones"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Pengobatan Melayu di Gedung Tabib identik dengan penggunaan bahan-bahan herbal untuk meracik obat.",
+      "en": "Malay medicine at Gedung Tabib was characterised by the use of herbal ingredients to prepare remedies."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-08",
+    "site": 4,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa yang terjadi pada jabatan tabib kerajaan setelah Kesultanan Riau-Lingga runtuh?",
+      "en": "What happened to the royal physician's post after the Riau-Lingga Sultanate fell?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Jabatan tersebut terus berlanjut hingga kini",
+          "en": "The post continued unchanged to this day"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Jabatan tabib diberhentikan oleh Belanda",
+          "en": "The physician's post was abolished by the Dutch"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Jabatan tersebut diwariskan ke Malaysia",
+          "en": "The post was inherited by Malaysia"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Jabatan tersebut dipindahkan ke Batam",
+          "en": "The post was moved to Batam"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Setelah kesultanan jatuh, jabatan tabib kerajaan diberhentikan oleh pemerintah kolonial Belanda.",
+      "en": "After the sultanate fell, the royal physician's post was abolished by the Dutch colonial government."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-09",
+    "site": 4,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa Gedung Tabib menjadi lokasi populer untuk berfoto oleh wisatawan?",
+      "en": "Why has Gedung Tabib become a popular photo spot for tourists?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena bangunannya baru dan modern",
+          "en": "Because the building is new and modern"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena tampilan kerangka bata merah dan pohon merambatnya unik dan estetik",
+          "en": "Because its red brick frame and climbing tree give it a unique, photogenic look"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena berada tepat di tepi pantai",
+          "en": "Because it sits right on the beach"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena berhiaskan lampu warna-warni",
+          "en": "Because it is decorated with colourful lights"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Susunan bata merah dan pohon yang merambat membuat Gedung Tabib populer sebagai spot foto (instagramable).",
+      "en": "The red brick structure and climbing tree make Gedung Tabib a popular ('instagrammable') photo spot."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-10",
+    "site": 4,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah pernyataan yang SALAH tentang Gedung Tabib dalam game ini?",
+      "en": "Which statement about Gedung Tabib in this game is INCORRECT?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Merupakan bekas kediaman Tabib Raja Daud",
+          "en": "It was the former residence of the physician Raja Daud"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Berfungsi sebagai tempat berobat dan meracik obat herbal",
+          "en": "It served as a place for treatment and preparing herbal medicine"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Silsilah lengkap Raja Daud dipastikan hingga Raja Haji Fisabilillah",
+          "en": "Raja Daud's full lineage back to Raja Haji Fisabilillah has been confirmed"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Kini tinggal dinding bata tanpa atap",
+          "en": "It now remains only as brick walls without a roof"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Riset menemukan silsilah lengkap Raja Daud belum bisa dipastikan, bahkan sumber lain mencampurnya dengan tokoh tabib lain, sehingga game ini hanya memakai nama 'Raja Daud' tanpa mengaitkan silsilah.",
+      "en": "Research found Raja Daud's full lineage cannot be confirmed, and some sources even conflate him with a different physician figure, so this game uses only the name 'Raja Daud' without claiming a lineage."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-11",
+    "site": 4,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Tabib kerajaan lain yang namanya diabadikan sebagai nama RSUD Provinsi Kepri adalah cucu dari...",
+      "en": "Another royal physician whose name was used for the RSUD Kepri Province hospital was the grandson of..."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Daud",
+          "en": "Raja Daud"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Ali Haji",
+          "en": "Raja Ali Haji"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Abdurrahman",
+          "en": "Raja Abdurrahman"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Engku Putri",
+          "en": "Engku Putri"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "RSUD Provinsi Kepri dinamai dari Raja Ahmad Tabib, cucu Raja Ali Haji yang menjadi tabib kerajaan sejak 1901 — tokoh berbeda dari Tabib Raja Daud di Gedung Tabib.",
+      "en": "RSUD Kepri Province is named after Raja Ahmad Tabib, a grandson of Raja Ali Haji who became a royal physician from 1901 — a different figure from Raja Daud of Gedung Tabib."
+    },
+    "active": true
+  },
+  {
+    "id": "M4-12",
+    "site": 4,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa penting membedakan naskah 'Ilmu Tabib' dan naskah 'Rumah Obat' dalam riset situs ini?",
+      "en": "Why is it important to distinguish the 'Ilmu Tabib' manuscript from the 'Rumah Obat' manuscript in this site's research?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena keduanya sebenarnya judul yang sama persis",
+          "en": "Because they are actually the exact same title"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena keduanya ditulis oleh dua orang berbeda meski sama-sama koleksi Yayasan Indrasakti",
+          "en": "Because they were written by two different authors, even though both are held by Yayasan Indrasakti"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena salah satunya adalah karya fiktif",
+          "en": "Because one of them is a fictional work"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena keduanya tidak berkaitan dengan pengobatan",
+          "en": "Because neither is related to medicine"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Naskah Ilmu Tabib ditulis Raja Haji Daud, sedangkan naskah Rumah Obat ditulis Ali Azimat; keduanya koleksi Yayasan Indrasakti namun karya penulis berbeda.",
+      "en": "The Ilmu Tabib manuscript was written by Raja Haji Daud, while the Rumah Obat manuscript was written by Ali Azimat; both are held by Yayasan Indrasakti but by different authors."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-01",
+    "site": 5,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Perigi Puteri merupakan bangunan yang menaungi...",
+      "en": "Perigi Puteri is a structure built over..."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Sebuah sumur tua",
+          "en": "An old well"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Sebuah makam raja",
+          "en": "A king's tomb"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Sebuah perpustakaan",
+          "en": "A library"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Sebuah dapur kerajaan",
+          "en": "A royal kitchen"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Perigi Puteri adalah bangunan pelindung sebuah sumur tua di Pulau Penyengat.",
+      "en": "Perigi Puteri is a structure built to protect an old well on Penyengat Island."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-02",
+    "site": 5,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Dahulu, Perigi Puteri digunakan sebagai tempat...",
+      "en": "In the past, Perigi Puteri was used as a place for..."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Pemandian dan mencuci untuk kaum wanita/putri kerajaan",
+          "en": "Bathing and washing for the kingdom's women/princesses"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Latihan berkuda",
+          "en": "Horse riding practice"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Menyimpan senjata",
+          "en": "Storing weapons"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Menjemur ikan",
+          "en": "Drying fish"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Bangunan ini berfungsi sebagai tempat mandi dan mencuci pakaian bagi para putri Kesultanan Riau-Lingga.",
+      "en": "The building functioned as a bathing and clothes-washing place for the princesses of the Riau-Lingga Sultanate."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-03",
+    "site": 5,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa bentuk khas atap Perigi Puteri yang membuatnya unik di antara perigi lain di Penyengat?",
+      "en": "What distinctive roof shape makes Perigi Puteri unique among other wells on Penyengat?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Atap kubah berbentuk setengah silinder",
+          "en": "A half-cylinder-shaped domed roof"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Atap genteng biasa",
+          "en": "An ordinary tiled roof"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Atap jerami",
+          "en": "A thatched roof"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Atap seng bergelombang",
+          "en": "A corrugated zinc roof"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Perigi Puteri satu-satunya perigi di Pulau Penyengat yang bangunannya memiliki kubah berbentuk setengah silinder.",
+      "en": "Perigi Puteri is the only well on Penyengat Island whose structure has a half-cylinder-shaped dome."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-04",
+    "site": 5,
+    "level": 1,
+    "type": "tf",
+    "prompt": {
+      "id": "Benar atau Salah: Perigi Puteri hanya memiliki satu pintu masuk.",
+      "en": "True or False: Perigi Puteri has only one entrance."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Benar",
+          "en": "True"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Salah",
+          "en": "False"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Bangunan ini hanya mempunyai satu pintu masuk yang terletak di sisi utara.",
+      "en": "The building has only one entrance, located on the north side."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-05",
+    "site": 5,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Tahun berapa Perigi Puteri pertama kali dipugar?",
+      "en": "In which year was Perigi Puteri first restored?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "1955",
+          "en": "1955"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "1982",
+          "en": "1982"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "2001",
+          "en": "2001"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "2015",
+          "en": "2015"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Perigi Puteri pertama kali dipugar oleh Kanwil Departemen Pendidikan dan Kebudayaan Riau pada tahun 1982.",
+      "en": "Perigi Puteri was first restored by the Riau Provincial Office of the Ministry of Education and Culture in 1982."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-06",
+    "site": 5,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa bagian selatan atap Perigi Puteri sengaja dibiarkan terbuka tanpa penutup?",
+      "en": "Why is the southern part of Perigi Puteri's roof deliberately left open?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena bagian itu tepat berada di atas sumur",
+          "en": "Because that part sits directly above the well"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena atapnya rusak dimakan usia",
+          "en": "Because the roof was damaged by age"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena dijadikan tempat menjemur pakaian",
+          "en": "Because it was used for drying clothes"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena belum sempat selesai dibangun",
+          "en": "Because construction was never finished"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Bagian atas terbuka di sisi selatan berada tepat di atas sumur, berbeda dari sisi lain bangunan yang tertutup rapat.",
+      "en": "The open section on the south side sits directly above the well, unlike the rest of the building which is fully enclosed."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-07",
+    "site": 5,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Mengapa Perigi Puteri diperkirakan dibangun setelah tahun 1803?",
+      "en": "Why is Perigi Puteri estimated to have been built after 1803?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Karena itu tahun Pulau Penyengat mulai dihuni setelah pernikahan Sultan Mahmud dan Engku Putri",
+          "en": "Because that is when Penyengat Island began to be settled following Sultan Mahmud and Engku Putri's marriage"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Karena itu tahun kemerdekaan Indonesia",
+          "en": "Because that is Indonesia's independence year"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Karena itu tahun Belanda datang ke Riau",
+          "en": "Because that is when the Dutch arrived in Riau"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karena itu tahun berdirinya Masjid Raya yang kedua",
+          "en": "Because that is when the second mosque was founded"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Perigi Puteri diperkirakan dibangun setelah Pulau Penyengat dijadikan tempat tinggal pasca pernikahan Sultan Mahmudsyah III dan Engku Putri.",
+      "en": "Perigi Puteri is estimated to have been built after Penyengat Island became a residence following Sultan Mahmudsyah III's marriage to Engku Putri."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-08",
+    "site": 5,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Apa yang membuat Perigi Puteri berbeda dari perigi-perigi lain sejenis di Pulau Penyengat?",
+      "en": "What makes Perigi Puteri different from other similar wells on Penyengat Island?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Letaknya paling jauh dari masjid",
+          "en": "It is the farthest from the mosque"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Hanya Perigi Puteri yang bangunannya memiliki kubah",
+          "en": "Only Perigi Puteri's structure has a dome"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Hanya Perigi Puteri yang airnya asin",
+          "en": "Only Perigi Puteri has salty water"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Hanya Perigi Puteri yang berbentuk bundar",
+          "en": "Only Perigi Puteri is round-shaped"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Di Pulau Penyengat ada beberapa perigi sejenis, tetapi hanya Perigi Puteri yang bangunannya berkubah.",
+      "en": "There are several similar wells on Penyengat Island, but only Perigi Puteri's structure has a dome."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-09",
+    "site": 5,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Sampai sekarang, sumur di dalam Perigi Puteri masih...",
+      "en": "To this day, the well inside Perigi Puteri is still..."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Kering total dan tidak berfungsi",
+          "en": "Completely dry and unusable"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Dimanfaatkan oleh sebagian warga sekitar",
+          "en": "Used by some of the surrounding residents"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Ditutup permanen oleh pemerintah",
+          "en": "Permanently sealed by the government"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Dipindahkan ke museum",
+          "en": "Moved to a museum"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Sumur di dalam Perigi Puteri masih dimanfaatkan oleh sebagian warga sekitar hingga sekarang.",
+      "en": "The well inside Perigi Puteri is still used by some local residents today."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-10",
+    "site": 5,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah pernyataan yang PALING tepat tentang kepercayaan bahwa air Perigi Puteri 'tidak pernah kering'?",
+      "en": "Which statement BEST describes the belief that Perigi Puteri's water 'never runs dry'?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Itu adalah fakta yang telah dibuktikan secara ilmiah",
+          "en": "It is a fact that has been scientifically proven"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Itu adalah kepercayaan turun-temurun warga sekitar, bukan fakta yang tercatat resmi",
+          "en": "It is a belief passed down among local residents, not an officially recorded fact"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Itu tertulis sebagai prasasti resmi kerajaan",
+          "en": "It is written as an official royal inscription"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Itu dibuktikan lewat penelitian geologi modern",
+          "en": "It has been proven through modern geological research"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Riset menemukan bahwa klaim 'air tak pernah kering' adalah kepercayaan warga, sehingga dalam game ini ditulis sebagai kepercayaan, bukan fakta.",
+      "en": "Research found that the claim of water 'never running dry' is a local belief, so this game presents it as a belief rather than a fact."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-11",
+    "site": 5,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Manakah pernyataan yang SALAH tentang Perigi Puteri?",
+      "en": "Which statement about Perigi Puteri is INCORRECT?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Bangunannya berdenah segi empat dengan kubah setengah silinder",
+          "en": "Its layout is square with a half-cylinder dome"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Digunakan sebagai tempat pemandian putri kerajaan",
+          "en": "It was used as a bathing place for royal princesses"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Memiliki banyak jendela besar untuk sirkulasi udara",
+          "en": "It has many large windows for air circulation"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Sumurnya masih dimanfaatkan sebagian warga hingga kini",
+          "en": "Its well is still used by some residents today"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Bangunan Perigi Puteri justru tidak memiliki jendela maupun lubang angin sama sekali.",
+      "en": "Perigi Puteri's structure actually has no windows or air vents at all."
+    },
+    "active": true
+  },
+  {
+    "id": "M5-12",
+    "site": 5,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Selain sumur, fasilitas apa lagi di dalam Perigi Puteri yang digunakan untuk mencuci pakaian?",
+      "en": "Besides the well, what other feature inside Perigi Puteri was used for washing clothes?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Tempat duduk panjang dari plesteran semen berukir",
+          "en": "A long carved cement-plastered bench"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Mesin cuci tradisional",
+          "en": "A traditional washing machine"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Kolam ikan",
+          "en": "A fish pond"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Rak penyimpanan kain",
+          "en": "A cloth storage rack"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Di dalam bangunan terdapat tempat duduk memanjang dari plesteran semen dengan ukiran di bagian pegangannya, digunakan untuk mencuci.",
+      "en": "Inside the building is a long cement-plastered bench with carved armrests, used for washing clothes."
+    },
+    "active": true
+  },
+  {
+    "id": "X-01",
+    "site": 0,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Pulau Penyengat terletak berdekatan dengan kota mana di Kepulauan Riau?",
+      "en": "Which city in the Riau Islands is Penyengat Island located closest to?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Tanjungpinang",
+          "en": "Tanjungpinang"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Batam",
+          "en": "Batam"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Bintan",
+          "en": "Bintan"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Karimun",
+          "en": "Karimun"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Pulau Penyengat terletak sangat dekat dengan Kota Tanjungpinang, ibu kota Kepulauan Riau.",
+      "en": "Penyengat Island lies very close to Tanjungpinang City, the capital of the Riau Islands."
+    },
+    "active": true
+  },
+  {
+    "id": "X-02",
+    "site": 0,
+    "level": 1,
+    "type": "mc",
+    "prompt": {
+      "id": "Karya sastra terkenal Gurindam Dua Belas ditulis oleh...",
+      "en": "The famous literary work Gurindam Dua Belas was written by..."
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Raja Ali Haji",
+          "en": "Raja Ali Haji"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Raja Abdurrahman",
+          "en": "Raja Abdurrahman"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Raja Daud",
+          "en": "Raja Daud"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Engku Putri",
+          "en": "Engku Putri"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Gurindam Dua Belas adalah karya Raja Ali Haji, sastrawan dan Pahlawan Nasional dari Pulau Penyengat.",
+      "en": "Gurindam Dua Belas is the work of Raja Ali Haji, a scholar and National Hero from Penyengat Island."
+    },
+    "active": true
+  },
+  {
+    "id": "X-03",
+    "site": 0,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Tahun berapa Raja Ali Haji menyelesaikan penulisan Gurindam Dua Belas?",
+      "en": "In which year did Raja Ali Haji complete writing Gurindam Dua Belas?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "1803",
+          "en": "1803"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "1832",
+          "en": "1832"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "1847",
+          "en": "1847"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "1858",
+          "en": "1858"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Ali Haji menyelesaikan Gurindam Dua Belas di Pulau Penyengat pada tahun 1847.",
+      "en": "Raja Ali Haji completed Gurindam Dua Belas on Penyengat Island in 1847."
+    },
+    "active": true
+  },
+  {
+    "id": "X-04",
+    "site": 0,
+    "level": 2,
+    "type": "mc",
+    "prompt": {
+      "id": "Melalui Keputusan Presiden nomor berapa Raja Ali Haji dianugerahi gelar Pahlawan Nasional?",
+      "en": "Under which Presidential Decree was Raja Ali Haji granted the title of National Hero?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Keppres 089/TK/2004",
+          "en": "Presidential Decree 089/TK/2004"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Keppres 050/TK/1990",
+          "en": "Presidential Decree 050/TK/1990"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Keppres 012/TK/2010",
+          "en": "Presidential Decree 012/TK/2010"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Keppres 075/TK/1999",
+          "en": "Presidential Decree 075/TK/1999"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Raja Ali Haji dianugerahi gelar Pahlawan Nasional melalui Keputusan Presiden Nomor 089/TK/2004.",
+      "en": "Raja Ali Haji was granted the title of National Hero through Presidential Decree No. 089/TK/2004."
+    },
+    "active": true
+  },
+  {
+    "id": "X-05",
+    "site": 0,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Karya apa yang ditulis Raja Ali Haji pada 1858 dan menjadi pelopor kamus ekabahasa Melayu?",
+      "en": "Which work did Raja Ali Haji write in 1858 that pioneered the monolingual Malay dictionary?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Gurindam Dua Belas",
+          "en": "Gurindam Dua Belas"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Kitab Pengetahuan Bahasa",
+          "en": "Kitab Pengetahuan Bahasa"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Hikayat Hang Tuah",
+          "en": "Hikayat Hang Tuah"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Ilmu Tabib",
+          "en": "Ilmu Tabib"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Pada 1858, Raja Ali Haji menulis Kitab Pengetahuan Bahasa, dianggap pelopor kamus satu bahasa (ekabahasa) Melayu.",
+      "en": "In 1858, Raja Ali Haji wrote Kitab Pengetahuan Bahasa, regarded as the pioneering monolingual Malay dictionary."
+    },
+    "active": true
+  },
+  {
+    "id": "X-06",
+    "site": 0,
+    "level": 3,
+    "type": "mc",
+    "prompt": {
+      "id": "Nilai apa yang PALING sesuai dicontohkan dari pesan Gurindam Dua Belas untuk sikap sehari-hari?",
+      "en": "Which value BEST reflects the message of Gurindam Dua Belas for everyday attitudes?"
+    },
+    "options": [
+      {
+        "id": "opt-a",
+        "label": {
+          "id": "Mengutamakan kekayaan di atas segalanya",
+          "en": "Prioritising wealth above all else"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-b",
+        "label": {
+          "id": "Nasihat menjaga akhlak, ibadah, dan hubungan baik antar sesama",
+          "en": "Advice to maintain good character, worship, and good relations with others"
+        },
+        "correct": true
+      },
+      {
+        "id": "opt-c",
+        "label": {
+          "id": "Anjuran untuk bermusuhan dengan tetangga",
+          "en": "Encouragement to be hostile to neighbours"
+        },
+        "correct": false
+      },
+      {
+        "id": "opt-d",
+        "label": {
+          "id": "Anjuran mengabaikan nasihat orang tua",
+          "en": "Encouragement to ignore parents' advice"
+        },
+        "correct": false
+      }
+    ],
+    "explanation": {
+      "id": "Gurindam Dua Belas berisi nasihat tentang ibadah, akhlak, kewajiban terhadap orang tua, dan hidup bermasyarakat yang baik.",
+      "en": "Gurindam Dua Belas contains advice on worship, character, duties to parents, and good communal living."
+    },
+    "active": true
+  }
+]

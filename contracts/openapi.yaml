@@ -1,0 +1,231 @@
+openapi: 3.0.3
+info:
+  title: Jejak Inderasakti API
+  version: 1.0.0
+  description: |
+    REST contract between web/ and api/. FROZEN as of 2026-09-19 — change only via a contract PR.
+    Realtime gameplay is specified in ws.md.
+servers:
+  - url: /api
+paths:
+  /auth/login:
+    post:
+      summary: Host login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          description: JWT valid for 8 hours
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LoginResponse' }
+        '401': { $ref: '#/components/responses/Error' }
+  /rooms:
+    post:
+      summary: Create a room (host)
+      security: [{ hostJwt: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CreateRoomRequest' }
+      responses:
+        '201':
+          description: Room created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CreateRoomResponse' }
+        '401': { $ref: '#/components/responses/Error' }
+        '409':
+          description: MAX_ROOMS — 5 active rooms already
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+  /rooms/{pin}:
+    get:
+      summary: Check a room and its remaining slots
+      parameters:
+        - { $ref: '#/components/parameters/Pin' }
+      responses:
+        '200':
+          description: Room found
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RoomInfo' }
+        '404': { $ref: '#/components/responses/Error' }
+  /rooms/{pin}/join:
+    post:
+      summary: Join a room as a player
+      parameters:
+        - { $ref: '#/components/parameters/Pin' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/JoinRequest' }
+      responses:
+        '200':
+          description: Joined; use player_token for /ws
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/JoinResponse' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409':
+          description: ROOM_FULL or NICKNAME_TAKEN
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '429': { $ref: '#/components/responses/Error' }
+  /rooms/{id}/results.csv:
+    get:
+      summary: Export room results (host)
+      security: [{ hostJwt: [] }]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: CSV export
+          content:
+            text/csv:
+              schema: { type: string }
+        '401': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /schools:
+    get:
+      summary: School autocomplete
+      parameters:
+        - { name: q, in: query, required: false, schema: { type: string } }
+      responses:
+        '200':
+          description: Matching schools
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/School' }
+  /leaderboard/schools:
+    get:
+      summary: School ranking across the event
+      responses:
+        '200':
+          description: Average of each school's top-5 scores; schools with fewer than 3 players are excluded
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/SchoolRank' }
+  /healthz:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { type: string, enum: [ok] }
+components:
+  securitySchemes:
+    hostJwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Pin:
+      name: pin
+      in: path
+      required: true
+      schema: { type: string, pattern: '^[0-9]{6}$' }
+  responses:
+    Error:
+      description: Error
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          enum: [UNAUTHORIZED, ROOM_FULL, MAX_ROOMS, NICKNAME_TAKEN, ROOM_NOT_FOUND, RATE_LIMITED, INVALID_REQUEST]
+        message: { type: string }
+    Jenjang:
+      type: string
+      enum: [SD, SMP, SMA]
+    Lang:
+      type: string
+      enum: [id, en]
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string }
+    LoginResponse:
+      type: object
+      required: [token]
+      properties:
+        token: { type: string }
+    CreateRoomRequest:
+      type: object
+      required: [jenjang, consent_confirmed]
+      properties:
+        jenjang: { $ref: '#/components/schemas/Jenjang' }
+        short_session: { type: boolean, default: false, description: 10 questions instead of 15 }
+        accuracy_mode: { type: boolean, default: false, description: Disables the speed factor }
+        consent_confirmed:
+          type: boolean
+          description: Host confirms parental/school consent (UU PDP Art. 25); must be true
+    CreateRoomResponse:
+      type: object
+      required: [id, pin, qr_url]
+      properties:
+        id: { type: string, format: uuid }
+        pin: { type: string, pattern: '^[0-9]{6}$' }
+        qr_url: { type: string }
+    RoomInfo:
+      type: object
+      required: [status, slots_left, jenjang]
+      properties:
+        status: { type: string, enum: [lobby, running] }
+        slots_left: { type: integer, minimum: 0, maximum: 15 }
+        jenjang: { $ref: '#/components/schemas/Jenjang' }
+    JoinRequest:
+      type: object
+      required: [nickname, jenjang, avatar, lang]
+      properties:
+        nickname: { type: string, minLength: 1, maxLength: 20 }
+        school_id: { type: integer, nullable: true }
+        jenjang: { $ref: '#/components/schemas/Jenjang' }
+        avatar: { type: integer, minimum: 1, maximum: 12 }
+        lang: { $ref: '#/components/schemas/Lang' }
+    JoinResponse:
+      type: object
+      required: [player_token]
+      properties:
+        player_token: { type: string }
+    School:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        jenjang: { type: string, nullable: true }
+    SchoolRank:
+      type: object
+      required: [school, avg_score, player_count]
+      properties:
+        school: { type: string }
+        avg_score: { type: number }
+        player_count: { type: integer }

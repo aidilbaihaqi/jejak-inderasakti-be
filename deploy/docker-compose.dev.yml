@@ -1,0 +1,65 @@
+# Local development stack: postgres + redis + api (no Caddy/TLS, no frontend).
+name: jejak-dev
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: jejak
+      POSTGRES_PASSWORD: jejak
+      POSTGRES_DB: jejak_inderasakti
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U jejak -d jejak_inderasakti" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --save "" --appendonly no
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: ../api
+    environment:
+      DATABASE_URL: postgres://jejak:jejak@postgres:5432/jejak_inderasakti?sslmode=disable
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: dev-only-secret-change-me-dev-only-secret
+      PORT: "8080"
+      ENV: development
+      LOG_LEVEL: debug
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    healthcheck:
+      test: [ "CMD", "wget", "-qO-", "http://localhost:8080/api/healthz" ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # One-off DB tools: `docker compose --profile tools run --rm tools /app/migrate up` (see Makefile db-* targets)
+  tools:
+    profiles: [ "tools" ]
+    build:
+      context: ../api
+      target: tools
+    environment:
+      DATABASE_URL: postgres://jejak:jejak@postgres:5432/jejak_inderasakti?sslmode=disable
+    volumes:
+      - ../seed:/seed:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pg_data:
