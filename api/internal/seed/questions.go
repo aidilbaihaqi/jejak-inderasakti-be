@@ -50,7 +50,7 @@ func (q Question) IsActive() bool {
 }
 
 func LoadQuestions(path string) ([]Question, error) {
-	raw, err := os.ReadFile(path)
+	raw, err := os.ReadFile(path) //nolint:gosec // path is the operator's own CLI flag
 	if err != nil {
 		return nil, fmt.Errorf("read questions file: %w", err)
 	}

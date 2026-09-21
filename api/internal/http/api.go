@@ -22,6 +22,9 @@ type Store interface {
 	RoomByPIN(ctx context.Context, pin string) (store.Room, error)
 	PlayerCount(ctx context.Context, roomID string) (int, error)
 	JoinRoom(ctx context.Context, in store.NewPlayer) (store.Player, error)
+	RoomByID(ctx context.Context, roomID string) (store.Room, error)
+	RoomResults(ctx context.Context, roomID string) ([]store.ResultRow, error)
+	SchoolLeaderboard(ctx context.Context) ([]store.SchoolRank, error)
 	SearchSchools(ctx context.Context, query string) ([]store.School, error)
 	QuestionPool(ctx context.Context) ([]store.QuestionRef, error)
 }
@@ -31,12 +34,19 @@ type RoomRegistry interface {
 	AddPlayer(ctx context.Context, roomID string, p store.Player) error
 }
 
+// Limiter decides whether a caller may act again; *ratelimit.Limiter satisfies it.
+type Limiter interface {
+	Allow(ctx context.Context, key string) bool
+}
+
 type Deps struct {
 	Store         Store
 	Rooms         RoomRegistry
 	Tokens        *auth.Tokens
 	WebSocket     http.Handler
 	PublicBaseURL string
+	JoinLimiter   Limiter // optional
+	TrustProxy    bool    // read the client IP from X-Forwarded-For (only when behind Caddy)
 }
 
 type API struct {
@@ -52,7 +62,9 @@ func NewRouter(d Deps) http.Handler {
 	mux.HandleFunc("POST /api/rooms", api.requireHost(api.createRoom))
 	mux.HandleFunc("GET /api/rooms/{pin}", api.getRoom)
 	mux.HandleFunc("POST /api/rooms/{pin}/join", api.joinRoom)
+	mux.HandleFunc("GET /api/rooms/{id}/results.csv", api.requireHost(api.exportResults))
 	mux.HandleFunc("GET /api/schools", api.searchSchools)
+	mux.HandleFunc("GET /api/leaderboard/schools", api.schoolLeaderboard)
 	if d.WebSocket != nil {
 		mux.Handle("GET /ws", d.WebSocket)
 	}

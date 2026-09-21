@@ -81,7 +81,11 @@ paths:
         '429': { $ref: '#/components/responses/Error' }
   /rooms/{id}/results.csv:
     get:
-      summary: Export room results (host)
+      summary: Export room results (host who owns the room)
+      description: |
+        UTF-8 CSV with a BOM and CRLF line endings. Columns: rank, nickname, school, jenjang, score,
+        correct_count, total_ms. Equal standings share a rank. Cells starting with = + - or @ are
+        prefixed with a single quote so spreadsheets do not run them as formulas.
       security: [{ hostJwt: [] }]
       parameters:
         - name: id
@@ -95,6 +99,7 @@ paths:
             text/csv:
               schema: { type: string }
         '401': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
         '404': { $ref: '#/components/responses/Error' }
   /schools:
     get:
@@ -114,7 +119,7 @@ paths:
       summary: School ranking across the event
       responses:
         '200':
-          description: Average of each school's top-5 scores; schools with fewer than 3 players are excluded
+          description: Average of each school's top-5 finished scores; schools with fewer than 3 players, and the special "Sekolah lain" / "Umum" entries, are excluded
           content:
             application/json:
               schema:
@@ -158,7 +163,7 @@ components:
       properties:
         code:
           type: string
-          enum: [UNAUTHORIZED, ROOM_FULL, MAX_ROOMS, NICKNAME_TAKEN, ROOM_NOT_FOUND, RATE_LIMITED, INVALID_REQUEST]
+          enum: [UNAUTHORIZED, FORBIDDEN, ROOM_FULL, MAX_ROOMS, NICKNAME_TAKEN, ROOM_NOT_FOUND, RATE_LIMITED, INVALID_REQUEST, INTERNAL]
         message: { type: string }
     Jenjang:
       type: string

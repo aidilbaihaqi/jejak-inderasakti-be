@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/alicebob/miniredis/v2"
+	"github.com/redis/go-redis/v9"
 
 	"github.com/aidilbaihaqi/jejak-inderasakti-be/api/internal/rank"
 )
@@ -14,16 +15,13 @@ import (
 func newBoard(t *testing.T) (*Redis, *miniredis.Miniredis) {
 	t.Helper()
 	server := miniredis.RunT(t)
-	board, err := NewRedis("redis://" + server.Addr() + "/0")
-	if err != nil {
-		t.Fatal(err)
-	}
+	client := redis.NewClient(&redis.Options{Addr: server.Addr()})
 	t.Cleanup(func() {
-		if err := board.Close(); err != nil {
+		if err := client.Close(); err != nil {
 			t.Logf("close: %v", err)
 		}
 	})
-	return board, server
+	return NewRedis(client), server
 }
 
 func TestSaveAndOrderRanksByScoreThenCorrectThenTime(t *testing.T) {

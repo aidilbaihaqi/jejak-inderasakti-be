@@ -242,14 +242,14 @@ func (s *Store) JoinRoom(ctx context.Context, in NewPlayer) (Player, error) {
 }
 
 func insertPlayer(ctx context.Context, tx pgx.Tx, q *queries.Queries, roomID uuid.UUID, in NewPlayer) (Player, error) {
-	params := queries.InsertPlayerParams{RoomID: roomID, Nickname: in.Nickname, Jenjang: in.Jenjang, Avatar: int16(in.Avatar), Lang: in.Lang}
+	params := queries.InsertPlayerParams{RoomID: roomID, Nickname: in.Nickname, Jenjang: in.Jenjang, Avatar: toInt16(in.Avatar), Lang: in.Lang}
 	schoolName := ""
 	if in.SchoolID != nil {
-		name, err := q.GetSchoolName(ctx, int32(*in.SchoolID))
+		name, err := q.GetSchoolName(ctx, toInt32(*in.SchoolID))
 		if err != nil {
 			return Player{}, ErrInvalidSchool
 		}
-		params.SchoolID = pgtype.Int4{Int32: int32(*in.SchoolID), Valid: true}
+		params.SchoolID = pgtype.Int4{Int32: toInt32(*in.SchoolID), Valid: true}
 		schoolName = name
 	}
 	id, err := q.InsertPlayer(ctx, params)

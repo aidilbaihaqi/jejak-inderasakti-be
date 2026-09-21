@@ -350,7 +350,7 @@ CUTOFF: Feature freeze Rab 23/9 18:00 ← TIDAK ADA FITUR BARU SETELAH INI
 
 ### Senin 21/9 — Integrasi & Scoring
 
-> **Status: ✅ Selesai (2026-09-21)** — `Score()` (UT-SC-01..14), `q.next`/`q.answer`, leaderboard Redis + `lb.update` 1×/detik, reconnect, room ended saat semua selesai. Diverifikasi: `make test-docker` (`-race`) dan satu sesi SD 15 soal end-to-end di Docker (skor Ani 12.750 = maksimum SD di dokumen desain).
+> **Status: ✅ Selesai (2026-09-21, commit `83bf01d`)** — `Score()` (UT-SC-01..14), `q.next`/`q.answer`, leaderboard Redis + `lb.update` 1×/detik, reconnect, room ended saat semua selesai. Diverifikasi: `make test-docker` (`-race`) dan satu sesi SD 15 soal end-to-end di Docker (skor Ani 12.750 = maksimum SD di dokumen desain).
 
 | Tim | Goal | Kriteria Selesai |
 |---|---|---|
@@ -359,6 +359,8 @@ CUTOFF: Feature freeze Rab 23/9 18:00 ← TIDAK ADA FITUR BARU SETELAH INI
 | Desainer | Lottie maskot 4 animasi (≤60KB each), efek suara 6 file (≤150KB total), aset final | Lottie berjalan di browser; sound tidak distorsi di HP murah |
 
 ### Selasa 22/9 — Deploy & Integrasi Nyata
+
+> **Status: 🟡 Kode selesai, deploy VPS menunggu server + domain (2026-09-22).** Selesai: rate limit join 10/menit/IP (Redis + fallback memori), `results.csv`, leaderboard sekolah, `deploy/docker-compose.yml` + `Caddyfile` + panduan `deploy/README.md`, CI GitHub Actions, lint bersih. Diverifikasi: stack staging penuh berjalan lokal (Caddy TLS 1.3, redirect, WSS, rate limit, CSV, `make test-docker`, Newman 41/41). Belum bisa: `https://staging.jejak.example.id` dan sertifikat Let's Encrypt (butuh VPS, DNS, dan akses SSH).
 
 | Tim | Goal | Kriteria Selesai |
 |---|---|---|

@@ -1,0 +1,100 @@
+# Staging / production stack: Caddy (TLS + static web) -> API -> Postgres + Redis.
+# Values come from deploy/.env (not committed); see deploy/.env.example and deploy/README.md.
+name: jejak
+
+networks:
+  jejak_net:
+    driver: bridge
+
+volumes:
+  pg_data:
+  caddy_data:
+  caddy_config:
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN in deploy/.env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ${WEB_DIST_DIR:-./web-dist}:/srv/web:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - jejak_net
+    depends_on:
+      api:
+        condition: service_healthy
+
+  api:
+    build:
+      context: ../api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:?set POSTGRES_USER}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:?set POSTGRES_DB}?sslmode=disable
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET (at least 32 characters)}
+      PORT: "8080"
+      ENV: ${APP_ENV:-production}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PUBLIC_BASE_URL: https://${DOMAIN}
+      TRUST_PROXY: "true" # the API is only reachable through Caddy, which sets X-Forwarded-For
+      RATE_LIMIT_JOIN_PER_MIN: ${RATE_LIMIT_JOIN_PER_MIN:-10}
+    networks:
+      - jejak_net
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - jejak_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --save "" --appendonly no # disposable cache, nothing to persist
+    networks:
+      - jejak_net
+
+  # One-off DB tools: `make db-migrate STACK_FILE=deploy/docker-compose.yml` (see Makefile).
+  tools:
+    profiles: ["tools"]
+    build:
+      context: ../api
+      target: tools
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
+    volumes:
+      - ../seed:/seed:ro
+    networks:
+      - jejak_net
+    depends_on:
+      postgres:
+        condition: service_healthy
