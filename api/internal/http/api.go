@@ -59,6 +59,7 @@ func NewRouter(d Deps) http.Handler {
 	api := &API{Deps: d, clock: time.Now}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /api/healthz", api.healthz)
+	mux.HandleFunc("GET /api/test", api.test) // temporary: verifies the CI/CD auto-deploy pipeline end-to-end
 	mux.HandleFunc("POST /api/auth/login", api.login)
 	mux.HandleFunc("POST /api/rooms", api.requireHost(api.createRoom))
 	mux.HandleFunc("GET /api/rooms/{pin}", api.getRoom)
@@ -74,6 +75,10 @@ func NewRouter(d Deps) http.Handler {
 
 func (a *API) healthz(w http.ResponseWriter, _ *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]string{"status": "ok"})
+}
+
+func (a *API) test(w http.ResponseWriter, _ *http.Request) {
+	writeJSON(w, http.StatusOK, map[string]string{"message": "CI/CD auto-deploy is working"})
 }
 
 func writeJSON(w http.ResponseWriter, status int, body any) {
