@@ -6,7 +6,7 @@ endif
 # Stop Git Bash on Windows from rewriting /app/... container paths.
 export MSYS_NO_PATHCONV = 1
 
-.PHONY: lint deploy-check logs ps test-docker db-create-host db-migrate db-rollback db-status db-seed db-seed-strict db-refresh dev-up dev-down dev-logs dev-reset dev test seed seed-strict build-fe up down backup
+.PHONY: lint deploy-check deploy-network logs ps test-docker db-create-host db-migrate db-rollback db-status db-seed db-seed-strict db-refresh dev-up dev-down dev-logs dev-reset dev test seed seed-strict build-fe up down backup
 
 # --- Database commands (run inside the Docker network, so no host port needed) ---
 # STACK_FILE selects the stack: dev by default, deploy/docker-compose.yml for staging/production.
@@ -66,9 +66,15 @@ lint:
 	docker run --rm -v "$(CURDIR)/api":/app -v jejak-gomod:/go/pkg/mod -v jejak-golangci:/root/.cache -w /app golangci/golangci-lint:latest golangci-lint run
 
 # Validate the staging/production compose file and Caddyfile without starting anything (needs deploy/.env).
+# `compose config` only checks YAML + interpolation, so jejak_net (external) need not exist yet.
 deploy-check:
 	docker compose -f deploy/docker-compose.yml config --quiet
-	docker run --rm -e DOMAIN=check.example.com -v "$(CURDIR)/deploy/Caddyfile":/etc/caddy/Caddyfile:ro caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile
+	docker run --rm -e APP_DOMAIN=app.check.example.com -e API_DOMAIN=api.check.example.com -v "$(CURDIR)/deploy/Caddyfile":/etc/caddy/Caddyfile:ro caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile
+
+# Create the Docker network shared by this stack and the frontend (jejak-inderasakti-fe) stack.
+# Run once per host before the first `make up`.
+deploy-network:
+	docker network inspect jejak_net >/dev/null 2>&1 || docker network create jejak_net
 
 logs:
 	docker compose -f $(STACK_FILE) logs -f --tail 100

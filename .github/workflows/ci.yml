@@ -45,7 +45,8 @@ jobs:
       - name: Compose file
         working-directory: deploy
         env:
-          DOMAIN: ci.example.com
+          APP_DOMAIN: app.ci.example.com
+          API_DOMAIN: api.ci.example.com
           POSTGRES_USER: ci
           POSTGRES_PASSWORD: ci
           POSTGRES_DB: ci
@@ -54,6 +55,6 @@ jobs:
 
       - name: Caddyfile
         run: >
-          docker run --rm -e DOMAIN=ci.example.com
+          docker run --rm -e APP_DOMAIN=app.ci.example.com -e API_DOMAIN=api.ci.example.com
           -v "$PWD/deploy/Caddyfile":/etc/caddy/Caddyfile:ro
           caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile

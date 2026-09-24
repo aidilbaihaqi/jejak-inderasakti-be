@@ -121,7 +121,7 @@
 - [ ] HTTP → HTTPS redirect aktif
 - [ ] HSTS header dikonfigurasi
 - [ ] WebSocket menggunakan `wss://` (bukan `ws://`)
-- [ ] CORS: `same-origin` (SPA dan API di domain yang sama)
+- [ ] CORS: allow-list via `CORS_ALLOWED_ORIGINS` (SPA di subdomain terpisah dari API); daftar yang sama membatasi `Origin` yang diterima saat WebSocket upgrade
 
 ### 3.2 Authentication & Authorization
 

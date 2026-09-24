@@ -1,6 +1,30 @@
-# Caddy obtains and renews the TLS certificate for $DOMAIN automatically (Let's Encrypt).
-# Ports 80 and 443 must reach this host and DOMAIN must resolve to it.
-{$DOMAIN} {
+# Caddy obtains and renews TLS certificates for APP_DOMAIN and API_DOMAIN automatically
+# (Let's Encrypt). Both A records must point at this host and ports 80/443 must be reachable.
+#
+# APP_DOMAIN (the Next.js frontend) and API_DOMAIN (this repo's REST + WebSocket API) are two
+# separate sites so each gets its own certificate; both are served by this single Caddy instance.
+# The frontend container ("web") is started by the jejak-inderasakti-fe stack and joins the same
+# external Docker network as this stack — see deploy/README.md.
+
+{$APP_DOMAIN} {
+	encode gzip zstd
+
+	log {
+		output stdout
+		format json
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+
+	reverse_proxy web:3000
+}
+
+{$API_DOMAIN} {
 	encode gzip zstd
 
 	log {
@@ -20,14 +44,7 @@
 		reverse_proxy api:8080
 	}
 
-	handle /api/* {
-		reverse_proxy api:8080
-	}
-
-	# Everything else is the single-page frontend
 	handle {
-		root * /srv/web
-		try_files {path} /index.html
-		file_server
+		reverse_proxy api:8080
 	}
 }

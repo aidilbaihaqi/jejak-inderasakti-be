@@ -6,6 +6,7 @@ import (
 	"errors"
 	"log/slog"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -29,12 +30,27 @@ type Handler struct {
 	upgrader websocket.Upgrader
 }
 
-// NewHandler builds the handler; allowAnyOrigin disables the same-origin check (development only).
-func NewHandler(rooms Rooms, tokens *auth.Tokens, allowAnyOrigin bool) *Handler {
+// NewHandler builds the handler. allowAnyOrigin disables the origin check entirely (development
+// only). Otherwise the Origin header must be empty (non-browser clients) or match one of
+// allowedOrigins — the same allow-list used for REST CORS — since the frontend and API can be on
+// different (sub)domains and gorilla's default same-host check would otherwise reject that.
+func NewHandler(rooms Rooms, tokens *auth.Tokens, allowAnyOrigin bool, allowedOrigins []string) *Handler {
 	h := &Handler{rooms: rooms, tokens: tokens}
 	h.upgrader = websocket.Upgrader{ReadBufferSize: 1024, WriteBufferSize: 1024}
-	if allowAnyOrigin {
-		h.upgrader.CheckOrigin = func(*http.Request) bool { return true }
+	h.upgrader.CheckOrigin = func(r *http.Request) bool {
+		if allowAnyOrigin {
+			return true
+		}
+		origin := r.Header.Get("Origin")
+		if origin == "" {
+			return true
+		}
+		for _, allowed := range allowedOrigins {
+			if strings.EqualFold(allowed, origin) {
+				return true
+			}
+		}
+		return false
 	}
 	return h
 }

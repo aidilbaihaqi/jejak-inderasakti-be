@@ -20,6 +20,8 @@ type Config struct {
 
 	JoinLimitPerMinute int  // join attempts per IP per minute; 0 disables (default off in development)
 	TrustProxy         bool // client IP comes from X-Forwarded-For; only set behind Caddy
+
+	AllowedOrigins []string // browser origins allowed to call the API cross-origin (CORS)
 }
 
 const defaultJoinLimitPerMinute = 10
@@ -43,7 +45,24 @@ func Load() (Config, error) {
 	}
 	cfg.JoinLimitPerMinute = limit
 	cfg.TrustProxy = os.Getenv("TRUST_PROXY") == "true"
+	cfg.AllowedOrigins = allowedOrigins(cfg.PublicBaseURL)
 	return cfg, nil
+}
+
+// allowedOrigins reads CORS_ALLOWED_ORIGINS (comma-separated); unset falls back to PublicBaseURL,
+// which is correct when the SPA and API still share a domain.
+func allowedOrigins(publicBaseURL string) []string {
+	raw := os.Getenv("CORS_ALLOWED_ORIGINS")
+	if raw == "" {
+		return []string{publicBaseURL}
+	}
+	var origins []string
+	for _, o := range strings.Split(raw, ",") {
+		if o = strings.TrimSpace(o); o != "" {
+			origins = append(origins, o)
+		}
+	}
+	return origins
 }
 
 // joinLimit reads RATE_LIMIT_JOIN_PER_MIN; unset means 10, or unlimited in development.

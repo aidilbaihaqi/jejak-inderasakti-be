@@ -428,7 +428,7 @@ jejak-inderasakti/
 | **Peserta auth** | Token HMAC per-room; hanya valid untuk satu room |
 | **Input validation** | Semua input divalidasi di server (nama, PIN, option_id) |
 | **Rate limit** | 10 percobaan join/menit per IP; key `rl:join:{ip}` di Redis TTL 1 menit |
-| **CORS** | Same-origin (SPA dan API di domain yang sama via Caddy) |
+| **CORS** | SPA di subdomain terpisah dari API (`penyengatadventure.tech` vs `api.penyengatadventure.tech`), satu Caddy yang sama; allow-list eksplisit via `CORS_ALLOWED_ORIGINS`, dipakai juga untuk cek `Origin` saat WebSocket upgrade |
 | **Data minimisasi** | Nama panggilan, sekolah, jenjang, avatar, bahasa — tanpa email/HP/tgl lahir/foto |
 | **Moderasi** | Filter nama kasar ID + Melayu; host dapat kick; tidak ada chat antar-pemain |
 | **Retensi** | `room_players` + `answers` dihapus 12 bulan pasca-acara; rekap sekolah disimpan sebagai agregat |

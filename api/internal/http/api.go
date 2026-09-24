@@ -40,13 +40,14 @@ type Limiter interface {
 }
 
 type Deps struct {
-	Store         Store
-	Rooms         RoomRegistry
-	Tokens        *auth.Tokens
-	WebSocket     http.Handler
-	PublicBaseURL string
-	JoinLimiter   Limiter // optional
-	TrustProxy    bool    // read the client IP from X-Forwarded-For (only when behind Caddy)
+	Store          Store
+	Rooms          RoomRegistry
+	Tokens         *auth.Tokens
+	WebSocket      http.Handler
+	PublicBaseURL  string
+	JoinLimiter    Limiter // optional
+	TrustProxy     bool    // read the client IP from X-Forwarded-For (only when behind Caddy)
+	AllowedOrigins []string
 }
 
 type API struct {
@@ -68,7 +69,7 @@ func NewRouter(d Deps) http.Handler {
 	if d.WebSocket != nil {
 		mux.Handle("GET /ws", d.WebSocket)
 	}
-	return recoverPanics(logRequests(mux))
+	return recoverPanics(logRequests(cors(d.AllowedOrigins, mux)))
 }
 
 func (a *API) healthz(w http.ResponseWriter, _ *http.Request) {

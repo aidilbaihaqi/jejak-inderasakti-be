@@ -96,7 +96,7 @@ func newEnv(t *testing.T) *env {
 	}
 	reg := game.NewRegistry(ctx, st, nil)
 	mux := http.NewServeMux()
-	mux.Handle("/ws", NewHandler(reg, tokens, true))
+	mux.Handle("/ws", NewHandler(reg, tokens, true, nil))
 	server := httptest.NewServer(mux)
 	t.Cleanup(server.Close)
 	return &env{server: server, tokens: tokens, store: st, rooms: reg}
@@ -296,6 +296,46 @@ func TestRejectsBadConnections(t *testing.T) {
 			}
 		})
 	}
+}
+
+// TestOriginAllowList covers the case where the frontend and API live on different (sub)domains:
+// the Origin header must match the configured allow-list, not the request's own Host.
+func TestOriginAllowList(t *testing.T) {
+	e := newEnv(t)
+	reg := e.rooms
+	mux := http.NewServeMux()
+	mux.Handle("/ws", NewHandler(reg, e.tokens, false, []string{"https://penyengatadventure.tech"}))
+	server := httptest.NewServer(mux)
+	t.Cleanup(server.Close)
+	url := "ws" + strings.TrimPrefix(server.URL, "http") + "/ws?"
+
+	token, err := e.tokens.IssuePlayer("room-1", "p1")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Run("allowed origin upgrades", func(t *testing.T) {
+		conn, resp, err := websocket.DefaultDialer.Dial(url+"token="+token, http.Header{"Origin": {"https://penyengatadventure.tech"}})
+		if err != nil {
+			t.Fatalf("dial: %v (resp %v)", err, resp)
+		}
+		t.Cleanup(func() { _ = conn.Close() })
+	})
+
+	t.Run("no origin header upgrades (non-browser clients)", func(t *testing.T) {
+		conn, resp, err := websocket.DefaultDialer.Dial(url+"token="+token, nil)
+		if err != nil {
+			t.Fatalf("dial: %v (resp %v)", err, resp)
+		}
+		t.Cleanup(func() { _ = conn.Close() })
+	})
+
+	t.Run("unlisted origin is rejected", func(t *testing.T) {
+		_, resp, err := websocket.DefaultDialer.Dial(url+"token="+token, http.Header{"Origin": {"https://evil.example"}})
+		if err == nil || resp == nil || resp.StatusCode != http.StatusForbidden {
+			t.Errorf("want 403, got %v %v", resp, err)
+		}
+	})
 }
 
 // expectSkippingLeaderboard reads until the wanted message arrives, ignoring lb.update pushes.

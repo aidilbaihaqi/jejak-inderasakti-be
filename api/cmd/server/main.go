@@ -65,8 +65,9 @@ func run() error {
 		Addr: ":" + cfg.Port,
 		Handler: apihttp.NewRouter(apihttp.Deps{
 			Store: db, Rooms: rooms, Tokens: tokens, PublicBaseURL: cfg.PublicBaseURL, TrustProxy: cfg.TrustProxy,
-			JoinLimiter: ratelimit.New(redisClient, cfg.JoinLimitPerMinute, time.Minute),
-			WebSocket:   ws.NewHandler(rooms, tokens, cfg.Env == "development"),
+			JoinLimiter:    ratelimit.New(redisClient, cfg.JoinLimitPerMinute, time.Minute),
+			WebSocket:      ws.NewHandler(rooms, tokens, cfg.Env == "development", cfg.AllowedOrigins),
+			AllowedOrigins: cfg.AllowedOrigins,
 		}),
 		ReadHeaderTimeout: readHeaderTimeout,
 	}

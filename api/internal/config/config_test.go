@@ -1,6 +1,9 @@
 package config
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestJoinLimit(t *testing.T) {
 	tests := []struct {
@@ -21,6 +24,26 @@ func TestJoinLimit(t *testing.T) {
 			got, err := joinLimit(tt.env)
 			if (err != nil) != tt.wantErr || got != tt.want {
 				t.Errorf("joinLimit(%q) = %d, %v; want %d, error=%v", tt.env, got, err, tt.want, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestAllowedOrigins(t *testing.T) {
+	tests := []struct {
+		name, env, publicBaseURL string
+		want                     []string
+	}{
+		{"unset falls back to PublicBaseURL", "", "https://jejak.test", []string{"https://jejak.test"}},
+		{"single origin", "https://app.jejak.test", "https://api.jejak.test", []string{"https://app.jejak.test"}},
+		{"comma-separated with spaces", "https://app.jejak.test, https://preview.vercel.app", "https://api.jejak.test", []string{"https://app.jejak.test", "https://preview.vercel.app"}},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			t.Setenv("CORS_ALLOWED_ORIGINS", tt.env)
+			got := allowedOrigins(tt.publicBaseURL)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("allowedOrigins() = %v, want %v", got, tt.want)
 			}
 		})
 	}
