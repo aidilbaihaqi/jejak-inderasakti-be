@@ -58,3 +58,25 @@ jobs:
           docker run --rm -e APP_DOMAIN=app.ci.example.com -e API_DOMAIN=api.ci.example.com
           -v "$PWD/deploy/Caddyfile":/etc/caddy/Caddyfile:ro
           caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile
+
+  # Only after tests + config validation pass on a real push to main — never on pull_request,
+  # so a fork/PR can't exfiltrate DEPLOY_SSH_KEY by adding a step to this job.
+  deploy:
+    name: Deploy to VPS
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [backend, deploy-config]
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            cd /opt/be
+            git fetch origin main
+            git reset --hard origin/main
+            make up
+            make db-migrate STACK_FILE=deploy/docker-compose.yml
